@@ -26,7 +26,8 @@ export const metadata: Metadata = {
   description:
     'Experience the Gulf Life with Gulf Life Concierge. Premium vacation rentals and property management on 30A and the Emerald Coast.',
   icons: {
-    icon: 'https://livegulflife.com/wp-content/uploads/2025/11/gulf-life-concierge-favicon.png',
+    icon: '/favicon.png',
+    apple: '/favicon.png',
   },
 }
 

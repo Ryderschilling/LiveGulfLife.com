@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 const WP = 'https://livegulflife.com'
-const LOGO_WHITE = `${WP}/wp-content/uploads/2025/11/GLC-logo-white.svg`
+const LOGO_WHITE = '/logo-white.svg'
 
 function useIsMobile(bp = 768) {
   const [isMobile, setIsMobile] = useState(false)

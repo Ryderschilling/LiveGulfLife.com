@@ -5,8 +5,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const WP = 'https://livegulflife.com'
-const LOGO_WHITE = `${WP}/wp-content/uploads/2025/11/GLC-logo-white.svg`
-const LOGO_DARK  = `${WP}/wp-content/uploads/2025/11/GLC-logo.svg`
+const LOGO_WHITE = '/logo-white.svg'
+const LOGO_DARK  = '/logo-dark.svg'
 
 export default function Nav() {
   const pathname = usePathname()
