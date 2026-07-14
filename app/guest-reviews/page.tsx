@@ -4,10 +4,6 @@ import { useState, useEffect, useRef } from 'react'
 
 const WP = 'https://livegulflife.com'
 
-// ── Review data ────────────────────────────────────────────────
-// NOTE FOR JOHN: Replace review text with actual guest-written text from
-// Streamline / Airbnb / VRBO. The current "response" text below is what
-// Gulf Life wrote BACK to guests — pull the original guest text instead.
 const REVIEWS = [
   {
     id: 1,
@@ -78,8 +74,17 @@ const REVIEWS = [
   },
 ]
 
+function useIsMobile(bp = 768) {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < bp)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [bp])
+  return isMobile
+}
 
-// ── Scroll reveal hook ─────────────────────────────────────────
 function useReveal(threshold = 0.1) {
   const ref = useRef<HTMLElement>(null)
   const [visible, setVisible] = useState(false)
@@ -95,10 +100,9 @@ function useReveal(threshold = 0.1) {
   return { ref, visible }
 }
 
-// ── Star component ─────────────────────────────────────────────
 function Stars({ count, size = 16 }: { count: number; size?: number }) {
   return (
-    <div style={{ display: 'flex', gap: '2px' }}>
+    <div style={{ display: 'flex', gap: '3px' }}>
       {Array(count).fill(0).map((_, i) => (
         <svg key={i} width={size} height={size} viewBox="0 0 24 24" fill="#AB9055">
           <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
@@ -108,84 +112,72 @@ function Stars({ count, size = 16 }: { count: number; size?: number }) {
   )
 }
 
-// ── Review card ────────────────────────────────────────────────
-function ReviewCard({ review, delay = 0, large = false }: {
+// Uniform card — same layout on both mobile and desktop
+function ReviewCard({ review, delay = 0, featured = false }: {
   review: typeof REVIEWS[0]
   delay?: number
-  large?: boolean
+  featured?: boolean
 }) {
   const [expanded, setExpanded] = useState(false)
   const { ref, visible } = useReveal()
-  const isLong = review.text.length > 180
-  const displayText = (!isLong || expanded) ? review.text : review.text.slice(0, 180) + '…'
+  const PREVIEW_LEN = 200
+  const isLong = review.text.length > PREVIEW_LEN
+  const displayText = (!isLong || expanded) ? review.text : review.text.slice(0, PREVIEW_LEN) + '…'
 
   return (
     <div
       ref={ref as React.RefObject<HTMLDivElement>}
       style={{
-        background: '#fff',
-        borderRadius: '12px',
-        padding: large ? '48px 52px' : '32px 36px',
+        background: featured ? '#2B354E' : '#fff',
+        borderRadius: '14px',
+        padding: '28px 24px',
         display: 'flex',
         flexDirection: 'column',
-        gap: '16px',
-        boxShadow: '0 2px 16px rgba(43,53,78,0.06)',
-        border: '1px solid rgba(43,53,78,0.06)',
+        gap: '14px',
+        boxShadow: featured
+          ? '0 8px 32px rgba(43,53,78,0.20)'
+          : '0 2px 16px rgba(43,53,78,0.06)',
+        border: featured
+          ? '1px solid rgba(171,144,85,0.3)'
+          : '1px solid rgba(43,53,78,0.06)',
         position: 'relative',
         overflow: 'hidden',
         opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(24px)',
-        transition: `opacity 0.6s ease ${delay}s, transform 0.6s ease ${delay}s, box-shadow 0.2s ease`,
-        cursor: 'default',
+        transform: visible ? 'translateY(0)' : 'translateY(20px)',
+        transition: `opacity 0.6s ease ${delay}s, transform 0.6s ease ${delay}s`,
       }}
-      onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 12px 36px rgba(43,53,78,0.12)')}
-      onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 2px 16px rgba(43,53,78,0.06)')}
     >
-      {/* Big decorative quote mark */}
+      {/* Decorative quote — top right */}
       <div style={{
-        position: 'absolute',
-        top: large ? '20px' : '12px',
-        right: large ? '36px' : '20px',
-        fontFamily: 'Georgia, serif',
-        fontSize: large ? '96px' : '72px',
-        lineHeight: 1,
-        color: 'rgba(171,144,85,0.10)',
-        userSelect: 'none',
-        pointerEvents: 'none',
+        position: 'absolute', top: '10px', right: '18px',
+        fontFamily: 'Georgia, serif', fontSize: '64px', lineHeight: 1,
+        color: featured ? 'rgba(171,144,85,0.15)' : 'rgba(171,144,85,0.10)',
+        userSelect: 'none', pointerEvents: 'none',
       }}>
         &ldquo;
       </div>
 
-      {/* Tag badge */}
-      <div style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        background: 'rgba(171,144,85,0.08)',
-        border: '1px solid rgba(171,144,85,0.2)',
-        borderRadius: '100px',
-        padding: '3px 12px',
-        width: 'fit-content',
-      }}>
-        <span style={{
-          fontFamily: 'Montserrat, sans-serif',
-          fontSize: '9px', fontWeight: 700,
-          letterSpacing: '0.12em', textTransform: 'uppercase',
-          color: '#AB9055',
+      {/* Top row: tag + stars */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
+        <div style={{
+          display: 'inline-flex', alignItems: 'center',
+          background: featured ? 'rgba(171,144,85,0.18)' : 'rgba(171,144,85,0.08)',
+          border: '1px solid rgba(171,144,85,0.25)',
+          borderRadius: '100px', padding: '3px 12px',
         }}>
-          {review.tag}
-        </span>
+          <span style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '9px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#AB9055' }}>
+            {review.tag}
+          </span>
+        </div>
+        <Stars count={review.rating} size={14} />
       </div>
-
-      {/* Stars */}
-      <Stars count={review.rating} size={large ? 18 : 15} />
 
       {/* Title */}
       <h3 style={{
         fontFamily: 'Outfit, sans-serif',
-        fontSize: large ? '22px' : '18px',
-        fontWeight: 500,
-        color: '#1A1A1A',
-        lineHeight: 1.3,
+        fontSize: '17px', fontWeight: 600,
+        color: featured ? '#fff' : '#1A1A1A',
+        lineHeight: 1.3, marginBottom: '2px',
       }}>
         {review.title}
       </h3>
@@ -193,55 +185,44 @@ function ReviewCard({ review, delay = 0, large = false }: {
       {/* Review text */}
       <div>
         <p style={{
-          fontSize: large ? '16px' : '15px',
-          color: '#4A4A4A',
-          lineHeight: 1.85,
-          fontStyle: 'italic',
+          fontSize: '14px',
+          color: featured ? 'rgba(255,255,255,0.82)' : '#4A4A4A',
+          lineHeight: 1.8, fontStyle: 'italic',
         }}>
           &ldquo;{displayText}&rdquo;
         </p>
         {isLong && (
-          <button
-            onClick={() => setExpanded(v => !v)}
-            style={{
-              background: 'none', border: 'none', cursor: 'pointer',
-              fontFamily: 'Montserrat, sans-serif', fontSize: '10px',
-              fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase',
-              color: '#AB9055', padding: '6px 0 0', display: 'block',
-            }}
-          >
+          <button onClick={() => setExpanded(v => !v)} style={{
+            background: 'none', border: 'none', cursor: 'pointer',
+            fontFamily: 'Montserrat, sans-serif', fontSize: '10px',
+            fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase',
+            color: '#AB9055', padding: '6px 0 0', display: 'block',
+          }}>
             {expanded ? '↑ Show less' : 'Read more ↓'}
           </button>
         )}
       </div>
 
-      {/* Reviewer + property */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: 'auto', paddingTop: '8px', borderTop: '1px solid rgba(43,53,78,0.07)' }}>
+      {/* Footer: reviewer + property */}
+      <div style={{
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+        marginTop: 'auto', paddingTop: '12px',
+        borderTop: `1px solid ${featured ? 'rgba(255,255,255,0.1)' : 'rgba(43,53,78,0.07)'}`,
+        gap: '12px', flexWrap: 'wrap',
+      }}>
         <div>
-          <p style={{
-            fontFamily: 'Montserrat, sans-serif',
-            fontSize: '11px', fontWeight: 700,
-            letterSpacing: '0.1em', textTransform: 'uppercase',
-            color: '#2B354E', marginBottom: '2px',
-          }}>
+          <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: featured ? '#fff' : '#2B354E', marginBottom: '2px' }}>
             {review.reviewer}
           </p>
-          <p style={{ fontSize: '12px', color: '#bbb', fontFamily: 'Outfit, sans-serif' }}>
+          <p style={{ fontSize: '12px', color: featured ? 'rgba(255,255,255,0.4)' : '#bbb', fontFamily: 'Outfit, sans-serif' }}>
             {review.date}
           </p>
         </div>
-        <a
-          href={review.propertyUrl}
-          style={{
-            fontFamily: 'Montserrat, sans-serif',
-            fontSize: '10px', fontWeight: 700,
-            letterSpacing: '0.08em', textTransform: 'uppercase',
-            color: '#AB9055', textDecoration: 'none',
-            transition: 'opacity 0.15s',
-          }}
-          onMouseEnter={e => (e.currentTarget.style.opacity = '0.65')}
-          onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
-        >
+        <a href={review.propertyUrl} style={{
+          fontFamily: 'Montserrat, sans-serif', fontSize: '10px', fontWeight: 700,
+          letterSpacing: '0.08em', textTransform: 'uppercase',
+          color: '#AB9055', textDecoration: 'none', whiteSpace: 'nowrap',
+        }}>
           {review.property} →
         </a>
       </div>
@@ -249,8 +230,7 @@ function ReviewCard({ review, delay = 0, large = false }: {
   )
 }
 
-// ── Stats bar ──────────────────────────────────────────────────
-function StatsBar() {
+function StatsBar({ isMobile }: { isMobile: boolean }) {
   const { ref, visible } = useReveal(0.2)
   return (
     <div
@@ -258,37 +238,27 @@ function StatsBar() {
       style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: '0',
         background: 'rgba(255,255,255,0.06)',
         borderTop: '1px solid rgba(255,255,255,0.1)',
-        marginTop: '48px',
+        marginTop: '40px',
         opacity: visible ? 1 : 0,
         transition: 'opacity 0.8s ease 0.3s',
       }}
     >
       {[
         { val: '100+', label: 'Verified Reviews' },
-        { val: '4.9',  label: 'Average Rating' },
-        { val: '98%',  label: 'Would Return' },
+        { val: '4.9',  label: 'Average Rating'  },
+        { val: '98%',  label: 'Would Return'    },
       ].map((s, i) => (
         <div key={i} style={{
-          padding: '28px 16px',
+          padding: isMobile ? '20px 8px' : '28px 16px',
           textAlign: 'center',
           borderRight: i < 2 ? '1px solid rgba(255,255,255,0.1)' : 'none',
         }}>
-          <p style={{
-            fontFamily: 'Outfit, sans-serif',
-            fontSize: '36px', fontWeight: 300,
-            color: '#fff', lineHeight: 1, marginBottom: '6px',
-          }}>
-            <span style={{ color: '#AB9055' }}>{s.val}</span>
+          <p style={{ fontFamily: 'Outfit, sans-serif', fontSize: isMobile ? '28px' : '36px', fontWeight: 300, color: '#AB9055', lineHeight: 1, marginBottom: '5px' }}>
+            {s.val}
           </p>
-          <p style={{
-            fontFamily: 'Montserrat, sans-serif',
-            fontSize: '9px', fontWeight: 700,
-            letterSpacing: '0.18em', textTransform: 'uppercase',
-            color: 'rgba(255,255,255,0.45)',
-          }}>
+          <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '9px', fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)' }}>
             {s.label}
           </p>
         </div>
@@ -297,110 +267,81 @@ function StatsBar() {
   )
 }
 
-// ── Page ───────────────────────────────────────────────────────
 export default function GuestReviewsPage() {
+  const isMobile = useIsMobile()
   const featured = REVIEWS.find(r => r.featured) ?? REVIEWS[0]
-  const rest = REVIEWS.filter(r => r.id !== featured?.id)
+  const rest      = REVIEWS.filter(r => r.id !== featured?.id)
 
   return (
     <>
-      {/* ── Header ──────────────────────────────────────── */}
+      {/* ── Header ────────────────────────────────────── */}
       <section style={{
-        background: '#2B354E',
-        color: '#fff',
-        padding: '120px 60px 0',
+        background: '#2B354E', color: '#fff',
+        padding: isMobile ? '96px 20px 0' : '120px 60px 0',
         textAlign: 'center',
       }}>
-        <p style={{
-          fontFamily: 'Montserrat, sans-serif',
-          fontSize: '10px', fontWeight: 700,
-          letterSpacing: '0.28em', textTransform: 'uppercase',
-          color: '#AB9055', marginBottom: '16px',
-          animation: 'floatUp 0.7s ease 0.2s both',
-        }}>
+        <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '10px', fontWeight: 700, letterSpacing: '0.28em', textTransform: 'uppercase', color: '#AB9055', marginBottom: '14px', animation: 'floatUp 0.7s ease 0.2s both' }}>
           Verified Guest Stays
         </p>
-        <h1 style={{
-          fontFamily: 'Outfit, sans-serif',
-          fontSize: 'clamp(32px, 5vw, 56px)',
-          fontWeight: 300,
-          letterSpacing: '-0.01em',
-          marginBottom: '16px',
-          animation: 'floatUp 0.7s ease 0.35s both',
-        }}>
+        <h1 style={{ fontFamily: 'Outfit, sans-serif', fontSize: isMobile ? '32px' : 'clamp(32px, 5vw, 56px)', fontWeight: 300, letterSpacing: '-0.01em', marginBottom: '16px', animation: 'floatUp 0.7s ease 0.35s both' }}>
           What Our Guests Say
         </h1>
-        <div style={{ width: '50px', height: '2px', background: '#AB9055', margin: '0 auto 24px', animation: 'floatUp 0.7s ease 0.45s both' }} />
-        <p style={{
-          fontSize: '17px',
-          color: 'rgba(255,255,255,0.7)',
-          maxWidth: '480px', margin: '0 auto',
-          lineHeight: 1.75,
-          animation: 'floatUp 0.7s ease 0.55s both',
-        }}>
+        <div style={{ width: '50px', height: '2px', background: '#AB9055', margin: '0 auto 20px', animation: 'floatUp 0.7s ease 0.45s both' }} />
+        <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.7)', maxWidth: '440px', margin: '0 auto', lineHeight: 1.75, animation: 'floatUp 0.7s ease 0.55s both' }}>
           Real experiences from real guests who chose Gulf Life Concierge for their 30A vacation.
         </p>
-
-        {/* Inline stats */}
-        <StatsBar />
+        <StatsBar isMobile={isMobile} />
       </section>
 
-      {/* ── Reviews grid ────────────────────────────────── */}
-      <section style={{ background: '#F7F4EE', padding: '56px 40px 80px' }}>
+      {/* ── Reviews ─────────────────────────────────────── */}
+      <section style={{ background: '#F7F4EE', padding: isMobile ? '40px 16px 56px' : '56px 40px 80px' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
-          {/* Featured hero card */}
-          {featured && (
-            <div style={{ marginBottom: '16px' }}>
-              <ReviewCard review={featured} large />
-            </div>
-          )}
-
-          {/* 2-col grid */}
-          {rest.length > 0 && (
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
-              gap: '16px',
-            }}>
-              {rest.map((review, i) => (
-                <ReviewCard key={review.id} review={review} delay={i * 0.08} />
+          {isMobile ? (
+            /* Mobile: single uniform column, all cards identical size */
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              {REVIEWS.map((review, i) => (
+                <ReviewCard
+                  key={review.id}
+                  review={review}
+                  delay={i * 0.06}
+                  featured={review.featured}
+                />
               ))}
             </div>
+          ) : (
+            /* Desktop: featured full-width card + 2-col grid */
+            <>
+              {featured && (
+                <div style={{ marginBottom: '16px' }}>
+                  <ReviewCard review={featured} featured delay={0} />
+                </div>
+              )}
+              {rest.length > 0 && (
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
+                  {rest.map((review, i) => (
+                    <ReviewCard key={review.id} review={review} delay={i * 0.08} />
+                  ))}
+                </div>
+              )}
+            </>
           )}
 
         </div>
       </section>
 
       {/* ── Leave a Review CTA ──────────────────────────── */}
-      <section style={{
-        background: '#2B354E',
-        padding: '80px 40px',
-        textAlign: 'center',
-      }}>
-        <p style={{
-          fontFamily: 'Montserrat, sans-serif', fontSize: '10px', fontWeight: 700,
-          letterSpacing: '0.22em', textTransform: 'uppercase', color: '#AB9055', marginBottom: '16px',
-        }}>
+      <section style={{ background: '#2B354E', padding: isMobile ? '56px 24px' : '80px 40px', textAlign: 'center' }}>
+        <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '10px', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#AB9055', marginBottom: '16px' }}>
           Share Your Experience
         </p>
-        <h2 style={{
-          fontFamily: 'Outfit, sans-serif',
-          fontSize: 'clamp(24px, 3.5vw, 40px)',
-          fontWeight: 300, color: '#fff', marginBottom: '16px',
-        }}>
+        <h2 style={{ fontFamily: 'Outfit, sans-serif', fontSize: isMobile ? '28px' : 'clamp(24px, 3.5vw, 40px)', fontWeight: 300, color: '#fff', marginBottom: '16px' }}>
           Enjoyed Your Stay?
         </h2>
-        <p style={{
-          fontSize: '16px', color: 'rgba(255,255,255,0.65)',
-          marginBottom: '40px', maxWidth: '440px', margin: '0 auto 40px',
-          lineHeight: 1.75,
-        }}>
+        <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.65)', marginBottom: '36px', maxWidth: '440px', margin: '0 auto 36px', lineHeight: 1.75 }}>
           We&rsquo;d love to hear about your Gulf Life experience. Your review helps future guests and means the world to our team.
         </p>
-        <a href={`${WP}/review-us/`} className="btn-gold">
-          Leave a Review
-        </a>
+        <a href={`${WP}/review-us/`} className="btn-gold">Leave a Review</a>
       </section>
     </>
   )

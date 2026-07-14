@@ -47,7 +47,7 @@ export default function AboutPage() {
   return (
     <>
       {/* ── Page Banner ─────────────────────────────────── */}
-      <div className="page-banner" style={{ paddingTop: '80px', height: '540px' }}>
+      <div className="page-banner about-banner">
         <img src={IMG.banner} alt="Gulf Coast at sunset" className="banner-bg" />
         <div
           className="banner-overlay"
@@ -60,7 +60,7 @@ export default function AboutPage() {
             className="banner-icon"
             style={{ filter: 'brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(5deg)', width: '52px', marginBottom: '18px' }}
           />
-          <h1 style={{ fontSize: '68px', letterSpacing: '0.14em' }}>About Us</h1>
+          <h1 className="about-banner-h1">About Us</h1>
           <div className="underline-bar" style={{ width: '70px' }} />
         </div>
       </div>
@@ -75,14 +75,14 @@ export default function AboutPage() {
 
       {/* ── Our Story ───────────────────────────────────── */}
       <section style={{ background: '#fff', overflow: 'hidden' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '620px' }}>
+        <div className="about-story-grid">
 
-          {/* Image col with overlay caption */}
+          {/* Image col */}
           <div className="img-zoom" style={{ position: 'relative' }}>
             <img
               src={IMG.side}
               alt="Gulf Coast aerial"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', minHeight: '320px' }}
             />
             <div style={{
               position: 'absolute', bottom: 0, left: 0, right: 0,
@@ -103,7 +103,7 @@ export default function AboutPage() {
           </div>
 
           {/* Content col */}
-          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '80px 72px' }}>
+          <div className="about-story-content">
             <p style={{
               fontFamily: 'Montserrat, sans-serif', fontSize: '11px', fontWeight: 700,
               letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gold)',
@@ -111,10 +111,7 @@ export default function AboutPage() {
             }}>
               Our Story
             </p>
-            <h2 style={{
-              fontFamily: 'Outfit, sans-serif', fontSize: '44px', fontWeight: 300,
-              color: '#1A1A1A', marginBottom: '20px', lineHeight: 1.15,
-            }}>
+            <h2 className="about-story-h2">
               More Than a Property<br />
               <em style={{ fontStyle: 'italic', fontWeight: 400 }}>Management Company</em>
             </h2>
@@ -135,7 +132,7 @@ export default function AboutPage() {
             <p style={{ fontSize: '16px', color: '#4A4A4A', lineHeight: 1.9, marginBottom: '44px' }}>
               From the moment a guest books to the second they check out, we handle every detail — so owners rest easy and guests focus on what matters: making memories on one of the most beautiful coastlines in the world.
             </p>
-            <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: '24px', alignItems: 'center', flexWrap: 'wrap' }}>
               <Link href="/contact-us" className="btn-navy">Work With Us</Link>
               <Link href="/property-management" style={{
                 fontFamily: 'Montserrat, sans-serif', fontSize: '12px', fontWeight: 700,
@@ -150,17 +147,10 @@ export default function AboutPage() {
       </section>
 
       {/* ── Stats Strip ─────────────────────────────────── */}
-      <section style={{ background: 'var(--navy)', padding: '64px 60px' }}>
-        <div style={{
-          maxWidth: '1100px', margin: '0 auto',
-          display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0',
-        }}>
+      <section className="about-stats-section">
+        <div className="about-stats-grid">
           {STATS.map((s, i) => (
-            <div key={i} style={{
-              textAlign: 'center',
-              padding: '0 32px',
-              borderRight: i < STATS.length - 1 ? '1px solid rgba(255,255,255,0.1)' : 'none',
-            }}>
+            <div key={i} className="about-stat-item" data-last={i === STATS.length - 1 ? 'true' : 'false'}>
               <div style={{
                 fontFamily: 'Outfit, sans-serif', fontSize: '52px', fontWeight: 300,
                 lineHeight: 1, marginBottom: '12px',
@@ -181,9 +171,9 @@ export default function AboutPage() {
       </section>
 
       {/* ── What Sets Us Apart ──────────────────────────── */}
-      <section style={{ background: 'var(--cream)', padding: '104px 60px' }}>
+      <section className="about-values-section">
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '72px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '56px' }}>
             <p style={{
               fontFamily: 'Montserrat, sans-serif', fontSize: '11px', fontWeight: 700,
               letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gold)',
@@ -191,21 +181,19 @@ export default function AboutPage() {
             }}>
               Why Gulf Life Concierge
             </p>
-            <h2 style={{
-              fontFamily: 'Outfit, sans-serif', fontSize: '44px', fontWeight: 300,
-              color: '#1A1A1A', marginBottom: '20px', lineHeight: 1.2,
-            }}>
+            <h2 className="about-values-h2">
               What Sets Us Apart
             </h2>
             <div style={{ width: '50px', height: '2px', background: 'var(--gold)', margin: '0 auto' }} />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '3px' }}>
+          {/* Value cards — single column on mobile, 3-col on desktop */}
+          <div className="about-values-grid">
             {VALUES.map((v, i) => (
               <div key={i} className="value-card">
                 <div style={{
-                  fontFamily: 'Outfit, sans-serif', fontSize: '80px', fontWeight: 300,
-                  color: '#EEEBE5', lineHeight: 1, marginBottom: '28px',
+                  fontFamily: 'Outfit, sans-serif', fontSize: '72px', fontWeight: 300,
+                  color: '#EEEBE5', lineHeight: 1, marginBottom: '24px',
                   userSelect: 'none',
                 }}>
                   {v.num}
@@ -213,11 +201,11 @@ export default function AboutPage() {
                 <h3 style={{
                   fontFamily: 'Montserrat, sans-serif', fontSize: '13px', fontWeight: 700,
                   letterSpacing: '0.1em', textTransform: 'uppercase', color: '#1A1A1A',
-                  marginBottom: '18px',
+                  marginBottom: '16px',
                 }}>
                   {v.title}
                 </h3>
-                <div style={{ width: '30px', height: '2px', background: 'var(--gold)', marginBottom: '20px' }} />
+                <div style={{ width: '30px', height: '2px', background: 'var(--gold)', marginBottom: '18px' }} />
                 <p style={{ fontSize: '15px', color: '#4A4A4A', lineHeight: 1.85 }}>{v.body}</p>
               </div>
             ))}
@@ -226,10 +214,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Dark Quote / Commitment Section ─────────────── */}
-      <section style={{
-        background: 'var(--navy-dark)', padding: '112px 60px',
-        position: 'relative', overflow: 'hidden',
-      }}>
+      <section className="about-commitment-section">
         {/* Ghost watermark */}
         <div style={{
           position: 'absolute', top: '50%', left: '50%',
@@ -242,15 +227,13 @@ export default function AboutPage() {
           GULF LIFE
         </div>
 
-        {/* Top accent line */}
         <div style={{
           position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)',
           width: '1px', height: '64px', background: 'linear-gradient(to bottom, transparent, var(--gold))',
         }} />
 
         <div style={{ maxWidth: '820px', margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1 }}>
-          {/* Diamond divider */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '20px', justifyContent: 'center', marginBottom: '52px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '20px', justifyContent: 'center', marginBottom: '48px' }}>
             <div style={{ height: '1px', width: '90px', background: 'rgba(171,144,85,0.5)' }} />
             <div style={{ width: '7px', height: '7px', background: 'var(--gold)', transform: 'rotate(45deg)' }} />
             <div style={{ height: '1px', width: '90px', background: 'rgba(171,144,85,0.5)' }} />
@@ -259,18 +242,14 @@ export default function AboutPage() {
           <p style={{
             fontFamily: 'Montserrat, sans-serif', fontSize: '11px', fontWeight: 700,
             letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--gold)',
-            marginBottom: '36px',
+            marginBottom: '32px',
           }}>
             Our Commitment
           </p>
-          <h2 style={{
-            fontFamily: 'Outfit, sans-serif', fontSize: '36px', fontWeight: 300,
-            fontStyle: 'italic', color: '#fff', lineHeight: 1.6, marginBottom: '52px',
-          }}>
+          <h2 className="about-commitment-quote">
             "The Gulf Coast isn't just where we work — it's where we live, love, and build our lives. That's the difference you feel when you choose Gulf Life Concierge."
           </h2>
 
-          {/* Diamond divider bottom */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px', justifyContent: 'center' }}>
             <div style={{ height: '1px', width: '90px', background: 'rgba(171,144,85,0.5)' }} />
             <div style={{ width: '7px', height: '7px', background: 'var(--gold)', transform: 'rotate(45deg)' }} />
@@ -278,7 +257,6 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Bottom accent line */}
         <div style={{
           position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)',
           width: '1px', height: '64px', background: 'linear-gradient(to top, transparent, var(--gold))',
@@ -286,9 +264,9 @@ export default function AboutPage() {
       </section>
 
       {/* ── Meet Our Team ──────────────────────────────── */}
-      <section style={{ background: '#fff', padding: '104px 60px' }}>
+      <section className="about-team-section">
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '72px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '56px' }}>
             <p style={{
               fontFamily: 'Montserrat, sans-serif', fontSize: '11px', fontWeight: 700,
               letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gold)',
@@ -296,33 +274,23 @@ export default function AboutPage() {
             }}>
               The People Behind the Experience
             </p>
-            <h2 style={{
-              fontFamily: 'Outfit, sans-serif', fontSize: '44px', fontWeight: 300,
-              color: '#1A1A1A', marginBottom: '20px',
-            }}>
-              Meet Our Team
-            </h2>
+            <h2 className="about-team-h2">Meet Our Team</h2>
             <div style={{ width: '50px', height: '2px', background: 'var(--gold)', margin: '0 auto' }} />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '28px' }}>
+          <div className="about-team-grid">
             {TEAM.map((member, i) => (
               <div key={i} className="team-card">
-                {/* Photo placeholder */}
                 <div style={{
                   position: 'relative', width: '100%', aspectRatio: '3 / 4',
                   background: 'linear-gradient(160deg, #eae6de 0%, #d8d3c9 100%)',
-                  overflow: 'hidden', marginBottom: '24px',
+                  overflow: 'hidden', marginBottom: '20px',
                 }}>
-                  {/* Subtle diagonal pattern */}
                   <div style={{
                     position: 'absolute', inset: 0,
                     backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 28px, rgba(171,144,85,0.05) 28px, rgba(171,144,85,0.05) 29px)',
                   }} />
-                  <div style={{
-                    position: 'absolute', inset: 0, display: 'flex',
-                    alignItems: 'center', justifyContent: 'center',
-                  }}>
+                  <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <div style={{
                       width: '72px', height: '72px', borderRadius: '50%',
                       border: '1.5px solid rgba(171,144,85,0.45)',
@@ -334,16 +302,15 @@ export default function AboutPage() {
                       </svg>
                     </div>
                   </div>
-                  {/* Gold sweep bottom */}
                   <div style={{
                     position: 'absolute', bottom: 0, left: 0, right: 0, height: '2px',
                     background: 'linear-gradient(90deg, transparent 0%, var(--gold) 40%, var(--gold-light) 60%, transparent 100%)',
                   }} />
                 </div>
                 <h3 style={{
-                  fontFamily: 'Montserrat, sans-serif', fontSize: '14px', fontWeight: 700,
+                  fontFamily: 'Montserrat, sans-serif', fontSize: '13px', fontWeight: 700,
                   letterSpacing: '0.08em', textTransform: 'uppercase', color: '#1A1A1A',
-                  marginBottom: '8px',
+                  marginBottom: '6px',
                 }}>
                   {member.name}
                 </h3>
@@ -360,17 +327,12 @@ export default function AboutPage() {
       </section>
 
       {/* ── Bottom CTA ─────────────────────────────────── */}
-      <section style={{
-        position: 'relative', overflow: 'hidden',
-        background: 'var(--navy)', padding: '108px 24px', textAlign: 'center',
-      }}>
-        {/* Top gold accent */}
+      <section className="about-cta-section">
         <div style={{
           position: 'absolute', top: 0, left: 0, right: 0, height: '3px',
           background: 'linear-gradient(90deg, transparent 0%, var(--gold) 25%, var(--gold-light) 50%, var(--gold) 75%, transparent 100%)',
         }} />
-
-        <div style={{ position: 'relative', zIndex: 1, maxWidth: '680px', margin: '0 auto' }}>
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: '680px', margin: '0 auto', textAlign: 'center' }}>
           <p style={{
             fontFamily: 'Montserrat, sans-serif', fontSize: '11px', fontWeight: 700,
             letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--gold)',
@@ -378,16 +340,13 @@ export default function AboutPage() {
           }}>
             Let's Get Started
           </p>
-          <h2 style={{
-            fontFamily: 'Outfit, sans-serif', fontSize: '52px', fontWeight: 300,
-            color: '#fff', marginBottom: '24px', lineHeight: 1.15,
-          }}>
+          <h2 className="about-cta-h2">
             Ready to Work<br />
             <em style={{ fontStyle: 'italic' }}>With Us?</em>
           </h2>
           <p style={{
             fontSize: '17px', color: 'rgba(255,255,255,0.65)',
-            lineHeight: 1.8, marginBottom: '52px',
+            lineHeight: 1.8, marginBottom: '48px',
           }}>
             Whether you&rsquo;re planning your dream Gulf Coast vacation or looking to maximize your property&rsquo;s income potential — we&rsquo;re here to make it happen.
           </p>
