@@ -176,6 +176,11 @@ export default function Nav() {
               onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>
               About Us
             </Link>
+            <Link href="/blog" style={baseLink}
+              onMouseEnter={e => (e.currentTarget.style.opacity = '0.65')}
+              onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>
+              Blog
+            </Link>
           </div>
 
           {/* CENTER — Logo */}
@@ -255,6 +260,7 @@ export default function Nav() {
             { label: 'About Us',           href: '/about-us' },
             { label: 'For Owners',         href: '/property-management' },
             { label: 'Guest Reviews',      href: '/guest-reviews' },
+            { label: 'Blog',               href: '/blog' },
             { label: 'Contact Us',         href: '/contact-us' },
           ].map(item => (
             <a key={item.label + item.href} href={item.href}

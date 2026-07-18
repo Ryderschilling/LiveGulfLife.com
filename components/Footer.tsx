@@ -127,6 +127,7 @@ export default function Footer() {
                   { label: 'Private Pools', href: `${WP}/vacation-rentals-with-a-private-pool/` },
                   { label: 'Property Management', href: '/property-management' },
                   { label: 'Guest Reviews', href: '/guest-reviews' },
+                  { label: '30A Travel Blog', href: '/blog' },
                   { label: 'About Us', href: '/about-us' },
                   { label: 'Contact', href: '/contact-us' },
                 ].map(link => (
