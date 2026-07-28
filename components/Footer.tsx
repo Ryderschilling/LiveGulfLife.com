@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-const WP = 'https://livegulflife.com'
+const WP = ''
 const LOGO_WHITE = '/logo-white.svg'
 
 function useIsMobile(bp = 768) {
@@ -102,8 +102,8 @@ export default function Footer() {
               <a href="tel:8508427619" style={{ display: 'block', color: '#fff', fontSize: '16px', textDecoration: 'none', marginBottom: '8px', fontWeight: 500 }}>
                 (850) 842-7619
               </a>
-              <a href="mailto:Connect@LiveGulfLife.com" style={{ display: 'block', color: 'rgba(255,255,255,0.65)', fontSize: '14px', textDecoration: 'none', marginBottom: '20px' }}>
-                Connect@LiveGulfLife.com
+              <a href="mailto:Host@LiveGulfLife.com" style={{ display: 'block', color: 'rgba(255,255,255,0.65)', fontSize: '14px', textDecoration: 'none', marginBottom: '20px' }}>
+                Host@LiveGulfLife.com
               </a>
               <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', lineHeight: 1.6 }}>
                 30A & Emerald Coast, FL<br />

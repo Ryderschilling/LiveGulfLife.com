@@ -1,16 +1,73 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const WP_BASE = process.env.WORDPRESS_URL || 'https://livegulflife.com'
+// Same guard as next.config.js: never proxy to the public domain, because the
+// public domain now points at Vercel and the request would come straight back
+// here, forever (Vercel kills it with 508 INFINITE_LOOP).
+function resolveWpOrigin(value?: string | null): string | null {
+  const raw = (value || '').trim()
+  if (!raw) return null
+
+  let host: string
+  try {
+    host = new URL(raw).hostname.toLowerCase()
+  } catch {
+    return null
+  }
+
+  if (host === 'livegulflife.com' || host === 'www.livegulflife.com') return null
+  if (host.endsWith('.vercel.app')) return null
+
+  return raw.replace(/\/+$/, '')
+}
+
+const WP_BASE = resolveWpOrigin(process.env.WORDPRESS_URL)
+
+// Shown only while WORDPRESS_URL is unset. Better than a raw 508 for a guest
+// who is trying to book.
+function unavailable() {
+  const html = `<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Booking Search | Gulf Life Concierge</title>
+<style>
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+       background:#2B354E;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+       text-align:center;padding:24px}
+  .box{max-width:520px}
+  h1{font-size:28px;font-weight:600;margin:0 0 16px;letter-spacing:.01em}
+  p{font-size:16px;line-height:1.7;color:rgba(255,255,255,.75);margin:0 0 28px}
+  a.btn{display:inline-block;background:#AB9055;color:#fff;text-decoration:none;
+        padding:14px 28px;letter-spacing:.12em;font-size:13px;text-transform:uppercase}
+  a.tel{color:#c9a96e;text-decoration:none;font-weight:600}
+</style></head>
+<body><div class="box">
+  <h1>Our booking search is being updated</h1>
+  <p>We are moving to a new site and rental search is back shortly.
+     Call us at <a class="tel" href="tel:+18508427619">(850) 842-7619</a>
+     and we will find you the right home today.</p>
+  <a class="btn" href="/contact-us">Contact Us</a>
+</div></body></html>`
+
+  return new NextResponse(html, {
+    status: 503,
+    headers: {
+      'Content-Type': 'text/html; charset=utf-8',
+      'Cache-Control': 'no-store',
+      'Retry-After': '3600',
+    },
+  })
+}
 
 export async function GET(request: NextRequest) {
+  if (!WP_BASE) return unavailable()
+
   const url = new URL(request.url)
 
   const areaId = url.searchParams.get('area_id') || ''
   const beds   = url.searchParams.get('beds')    || ''
-  const sd     = url.searchParams.get('sd')      || ''
-  const ed     = url.searchParams.get('ed')      || ''
 
-  // Fetch the WP search results page — pass all params so WP can do any server-side filtering
+  // Fetch the WP search results page, passing all params so WP can filter.
   const wpUrl = `${WP_BASE}/search-results/?${url.searchParams.toString()}`
 
   try {
@@ -21,14 +78,19 @@ export async function GET(request: NextRequest) {
         'Accept-Language': 'en-US,en;q=0.5',
       },
       cache: 'no-store',
+      redirect: 'follow',
     })
 
     let html = await wpResponse.text()
 
-    // ── Inject filter-init script ─────────────────────────────────────────────
-    // Runs in the browser after Streamline loads.
-    // Sets the location + bedrooms selects in a way Angular's ng-model picks up,
-    // then clicks the UPDATE button to trigger the actual search.
+    // Rewrite any absolute links back to the WP origin so the browser stays on
+    // livegulflife.com and keeps going through this proxy.
+    const originHost = new URL(WP_BASE).origin
+    html = html.split(originHost).join('')
+
+    // Inject the filter-init script. Runs in the browser after Streamline loads,
+    // sets the location + bedrooms selects the way Angular ng-model expects,
+    // then clicks UPDATE to fire the real search.
     const initScript = `
 <script>
 (function() {
@@ -36,15 +98,12 @@ export async function GET(request: NextRequest) {
   var BEDS    = '${beds}';
 
   function setSelectAngular(el, value) {
-    // Setting .value + dispatching 'change' is what Angular's ng-model listens for
     el.value = value;
     el.dispatchEvent(new Event('change', { bubbles: true }));
-    // Also fire 'input' for safety
     el.dispatchEvent(new Event('input', { bubbles: true }));
   }
 
   function clickUpdate() {
-    // The UPDATE button on the Streamline search bar is type="submit"
     var btn = document.querySelector('button[type="submit"]');
     if (btn) btn.click();
   }
@@ -53,7 +112,6 @@ export async function GET(request: NextRequest) {
     var locSelect  = document.getElementById('resortpro_sw_area');
     var bedsSelect = document.getElementById('streamlinecore_sw_bedrooms_number');
 
-    // Retry until Streamline has mounted its selects
     if (!locSelect || !bedsSelect) {
       if (attempts > 0) setTimeout(function() { applyFilters(attempts - 1); }, 250);
       return;
@@ -62,7 +120,6 @@ export async function GET(request: NextRequest) {
     if (AREA_ID) setSelectAngular(locSelect,  AREA_ID);
     if (BEDS)    setSelectAngular(bedsSelect, BEDS);
 
-    // Give Angular time to run its digest cycle, then fire UPDATE
     setTimeout(clickUpdate, 600);
   }
 
@@ -81,7 +138,6 @@ export async function GET(request: NextRequest) {
       headers: { 'Content-Type': 'text/html; charset=utf-8' },
     })
   } catch {
-    // If server-side fetch fails, fall back to a direct redirect to WP
-    return NextResponse.redirect(wpUrl)
+    return unavailable()
   }
 }

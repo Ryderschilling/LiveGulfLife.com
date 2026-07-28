@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-const LOGO = 'https://livegulflife.com/wp-content/uploads/2025/11/GLC-logo-white.svg'
+const LOGO = '/logo-white.svg'
 
 export default function Loader() {
   const [fading, setFading] = useState(false)

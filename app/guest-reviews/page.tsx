@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 
-const WP = 'https://livegulflife.com'
+const WP = ''
 
 const REVIEWS = [
   {

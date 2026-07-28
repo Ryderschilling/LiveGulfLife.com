@@ -103,7 +103,7 @@ export default function BlogIndexPage() {
           Browse our collection of vacation homes across 30A and the Emerald Coast, or let our
           concierge team match you with the perfect stay.
         </p>
-        <a href="https://livegulflife.com/search-results/" className="btn-gold">Browse Rentals</a>
+        <a href="/search-results/" className="btn-gold">Browse Rentals</a>
       </section>
     </>
   )

@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 
-const WP = 'https://livegulflife.com'
+const WP = ''
 const UP = `${WP}/wp-content/uploads/2025/11`
 
 const IMG = {

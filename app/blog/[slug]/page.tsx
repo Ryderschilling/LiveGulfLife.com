@@ -192,7 +192,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           like it&rsquo;s our own.
         </p>
         <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <a href="https://livegulflife.com/search-results/" className="btn-gold">Browse Rentals</a>
+          <a href="/search-results/" className="btn-gold">Browse Rentals</a>
           <Link href="/contact-us" className="btn-outline-white">Contact Us</Link>
         </div>
       </section>

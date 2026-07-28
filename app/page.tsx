@@ -6,7 +6,7 @@ import StatCounter from '@/components/StatCounter'
 import Map30A from '@/components/Map30A'
 import WaveDivider from '@/components/WaveDivider'
 
-const WP = 'https://livegulflife.com'
+const WP = ''
 const UP = `${WP}/wp-content/uploads/2025/11`
 
 const IMG = {

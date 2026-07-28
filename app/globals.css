@@ -373,6 +373,77 @@ main {
   transform: translateY(-4px);
 }
 
+/* ── Team photo frame ─────────────────────────────── */
+.team-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: linear-gradient(160deg, #eae6de 0%, #d8d3c9 100%);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.team-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  display: block;
+  filter: saturate(0.92) contrast(1.03);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.team-card:hover .team-photo-img { transform: scale(1.04); }
+.team-photo-texture {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg, transparent, transparent 28px,
+    rgba(171, 144, 85, 0.05) 28px, rgba(171, 144, 85, 0.05) 29px
+  );
+}
+.team-photo-center {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.team-photo-ring {
+  width: 72px; height: 72px; border-radius: 50%;
+  border: 1.5px solid rgba(171, 144, 85, 0.45);
+  display: flex; align-items: center; justify-content: center;
+}
+.team-photo-rule {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(
+    90deg, transparent 0%, var(--gold) 40%, var(--gold-light) 60%, transparent 100%
+  );
+}
+
+/* ── Team text ────────────────────────────────────── */
+.team-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: #1A1A1A; margin-bottom: 6px;
+}
+.team-role {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold);
+}
+.team-bio {
+  margin-top: 14px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #5A5A5A;
+  text-align: left;
+  max-width: 34ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 640px) {
+  .team-bio { font-size: 13px; max-width: none; }
+}
+
 /* ─── ABOUT PAGE ─────────────────────────────────── */
 .about-banner { padding-top: 80px; height: 540px; }
 .about-banner-h1 { font-size: 68px; letter-spacing: 0.14em; }
@@ -742,4 +813,16 @@ main {
   .blog-article { padding: 40px 20px 56px; }
   .blog-article-h2 { font-size: 24px; margin: 36px 0 14px; }
   .blog-article-p { font-size: 15.5px; }
+}
+
+/* ---------------------------------------------------------------
+   TEMPORARY: WordPress media placeholder
+   While WORDPRESS_URL is unset, /wp-content/ images 404. This makes
+   them read as a soft brand-coloured panel instead of a broken-image
+   icon with alt text. Safe to delete once the WP origin is wired up.
+   --------------------------------------------------------------- */
+img[src^="/wp-content/"] {
+  background: linear-gradient(160deg, #3d4864 0%, #2B354E 100%);
+  color: transparent;
+  font-size: 0;
 }

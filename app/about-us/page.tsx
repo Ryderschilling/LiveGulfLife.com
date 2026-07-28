@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const WP = 'https://livegulflife.com'
+const WP = ''
 const UP  = `${WP}/wp-content/uploads/2025/11`
 
 const IMG = {
@@ -9,13 +9,33 @@ const IMG = {
   logoIcon: `${UP}/GLC-logo-white.svg`,
 }
 
-const TEAM = [
-  { name: 'John Smith', role: 'CEO' },
-  { name: 'John Smith', role: 'COO' },
-  { name: 'John Smith', role: 'Management' },
-  { name: 'John Smith', role: 'Support' },
-  { name: 'John Smith', role: 'Support' },
-  { name: 'John Smith', role: 'Support' },
+type TeamMember = {
+  name: string
+  role: string
+  /** Path under /public. Omit to render the placeholder avatar. */
+  photo?: string
+  /** Short third-person bio. Omit to render name + role only. */
+  bio?: string
+}
+
+// TODO(John): roles reading "Gulf Life Team" are placeholders until each person
+// sends their title + bio. Swap the role string and add photo/bio as they arrive.
+const TEAM: TeamMember[] = [
+  { name: "John O'Hanlan", role: 'Owner' },
+  {
+    name: 'Jeremy',
+    role: 'Property Operations',
+    photo: '/team/jeremy.jpg',
+    bio:
+      'Jeremy helps keep our vacation homes guest-ready by coordinating maintenance, ' +
+      'solving property issues, and working with trusted local vendors. He is committed ' +
+      'to providing reliable service, clear communication, and ensuring every guest has ' +
+      'a comfortable, worry-free stay.',
+  },
+  { name: 'Jim McGehee', role: 'Gulf Life Team' },
+  { name: 'Samantha Reid', role: 'Gulf Life Team' },
+  { name: 'Mark', role: 'Gulf Life Team' },
+  { name: 'Erin Brockman', role: 'Gulf Life Team' },
 ]
 
 const STATS = [
@@ -279,47 +299,34 @@ export default function AboutPage() {
           </div>
 
           <div className="about-team-grid">
-            {TEAM.map((member, i) => (
-              <div key={i} className="team-card">
-                <div style={{
-                  position: 'relative', width: '100%', aspectRatio: '3 / 4',
-                  background: 'linear-gradient(160deg, #eae6de 0%, #d8d3c9 100%)',
-                  overflow: 'hidden', marginBottom: '20px',
-                }}>
-                  <div style={{
-                    position: 'absolute', inset: 0,
-                    backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 28px, rgba(171,144,85,0.05) 28px, rgba(171,144,85,0.05) 29px)',
-                  }} />
-                  <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{
-                      width: '72px', height: '72px', borderRadius: '50%',
-                      border: '1.5px solid rgba(171,144,85,0.45)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    }}>
-                      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="rgba(171,144,85,0.55)" strokeWidth="1.25">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                        <circle cx="12" cy="7" r="4"/>
-                      </svg>
-                    </div>
-                  </div>
-                  <div style={{
-                    position: 'absolute', bottom: 0, left: 0, right: 0, height: '2px',
-                    background: 'linear-gradient(90deg, transparent 0%, var(--gold) 40%, var(--gold-light) 60%, transparent 100%)',
-                  }} />
+            {TEAM.map((member) => (
+              <div key={member.name} className="team-card">
+                <div className="team-photo">
+                  {member.photo ? (
+                    <img
+                      src={member.photo}
+                      alt={`${member.name}, ${member.role} at Gulf Life Concierge`}
+                      loading="lazy"
+                      className="team-photo-img"
+                    />
+                  ) : (
+                    <>
+                      <div className="team-photo-texture" />
+                      <div className="team-photo-center">
+                        <div className="team-photo-ring">
+                          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="rgba(171,144,85,0.55)" strokeWidth="1.25">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                          </svg>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                  <div className="team-photo-rule" />
                 </div>
-                <h3 style={{
-                  fontFamily: 'Montserrat, sans-serif', fontSize: '13px', fontWeight: 700,
-                  letterSpacing: '0.08em', textTransform: 'uppercase', color: '#1A1A1A',
-                  marginBottom: '6px',
-                }}>
-                  {member.name}
-                </h3>
-                <p style={{
-                  fontFamily: 'Montserrat, sans-serif', fontSize: '11px', fontWeight: 600,
-                  letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold)',
-                }}>
-                  {member.role}
-                </p>
+                <h3 className="team-name">{member.name}</h3>
+                <p className="team-role">{member.role}</p>
+                {member.bio && <p className="team-bio">{member.bio}</p>}
               </div>
             ))}
           </div>

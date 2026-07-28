@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-const WP = 'https://livegulflife.com'
+const WP = ''
 const UP = `${WP}/wp-content/uploads/2025/11`
 
 const LOCATIONS = [

@@ -3,7 +3,7 @@
 // existing entry, change the slug/title/blocks, and redeploy.
 // Inline links inside text use [label](href) syntax.
 
-const WP = 'https://livegulflife.com'
+const WP = ''
 const UP = `${WP}/wp-content/uploads/2025/11`
 
 export const SITE_URL = 'https://livegulflife.com'
@@ -63,7 +63,7 @@ export const POSTS: BlogPost[] = [
       { type: 'h2', text: 'Spring (March – May): The Sweet Spot Begins' },
       { type: 'p', text: 'March kicks off with spring break crowds and 60s–70s air temps. The Gulf is still cool, but pool-deck weather arrives fast. By April the crowds thin, highs hit the mid-70s, and the water starts to warm. May might be the single best month on 30A: 80-degree days, swimmable water, uncrowded restaurants, and rates that haven’t hit summer peak yet.' },
       { type: 'h2', text: 'Summer (June – August): Full Gulf Life' },
-      { type: 'p', text: 'This is what the postcards show. Water temps in the mid-80s, long beach days, farmers markets, and every town from Grayton to Rosemary humming. It’s also the busiest and most expensive stretch of the year — beachfront homes book out months ahead. If summer is your window, book early and book direct. Our [beachfront rentals](https://livegulflife.com/beach-front-vacation-rentals/) are usually the first to go.' },
+      { type: 'p', text: 'This is what the postcards show. Water temps in the mid-80s, long beach days, farmers markets, and every town from Grayton to Rosemary humming. It’s also the busiest and most expensive stretch of the year — beachfront homes book out months ahead. If summer is your window, book early and book direct. Our [beachfront rentals](/beach-front-vacation-rentals/) are usually the first to go.' },
       { type: 'quote', text: 'Local tip: June typically has calmer surf and clearer water than August, when afternoon storms are more frequent. Early summer is the underrated pick.' },
       { type: 'h2', text: 'Fall (September – October): The Locals’ Secret' },
       { type: 'p', text: 'Ask anyone who lives here — fall is when 30A shows off. The water is still 84 degrees in September, the summer crowds are gone by Labor Day, and rates drop meaningfully. October brings the 30A Songwriters events, seafood festivals, and arguably the best sunsets of the year. If you have flexibility, this is the window we recommend most often.' },
@@ -80,7 +80,7 @@ export const POSTS: BlogPost[] = [
         'November – December: Mild and festive. Holiday bookings fill fast.',
       ]},
       { type: 'h2', text: 'Ready to Pick Your Week?' },
-      { type: 'p', text: 'Whenever you decide to come, staying in a professionally managed home means the details are handled before you arrive. Browse our [30A vacation rentals](https://livegulflife.com/search-results/) or [reach out to our concierge team](/contact-us) — we’re happy to recommend the right town and the right home for the season you’re booking.' },
+      { type: 'p', text: 'Whenever you decide to come, staying in a professionally managed home means the details are handled before you arrive. Browse our [30A vacation rentals](/search-results/) or [reach out to our concierge team](/contact-us) — we’re happy to recommend the right town and the right home for the season you’re booking.' },
     ],
   },
 
@@ -140,7 +140,7 @@ export const POSTS: BlogPost[] = [
       { type: 'h3', text: '15. Do absolutely nothing on purpose' },
       { type: 'p', text: 'The real 30A move: a slow morning on the porch, coffee in hand, no plan at all. Our guests tell us it’s the thing they remember most.' },
       { type: 'h2', text: 'Stay in the Middle of It All' },
-      { type: 'p', text: 'Every home we manage puts you minutes from this list. Browse our [vacation rentals on 30A](https://livegulflife.com/search-results/), or [ask our concierge team](/contact-us) to build you an itinerary — it’s what we’re here for.' },
+      { type: 'p', text: 'Every home we manage puts you minutes from this list. Browse our [vacation rentals on 30A](/search-results/), or [ask our concierge team](/contact-us) to build you an itinerary — it’s what we’re here for.' },
     ],
   },
 
@@ -207,7 +207,7 @@ export const POSTS: BlogPost[] = [
         'Trade-off: you’ll drive or bike to the town centers',
       ]},
       { type: 'h2', text: 'Still Torn? That’s Literally Our Job.' },
-      { type: 'p', text: 'We manage homes across the 30A corridor and match groups to towns every single week. Tell us who’s coming and what a perfect day looks like, and we’ll point you to the right neighborhood — and the right house. [Browse our rentals](https://livegulflife.com/search-results/) or [talk to our concierge team](/contact-us).' },
+      { type: 'p', text: 'We manage homes across the 30A corridor and match groups to towns every single week. Tell us who’s coming and what a perfect day looks like, and we’ll point you to the right neighborhood — and the right house. [Browse our rentals](/search-results/) or [talk to our concierge team](/contact-us).' },
     ],
   },
 
@@ -236,7 +236,7 @@ export const POSTS: BlogPost[] = [
       { type: 'h2', text: '2. Is beach access public, deeded, or private?' },
       { type: 'p', text: 'Walton County beach access is a real topic. Some neighborhoods (like Watersound) have private access; some homes come with deeded access; others rely on public accesses that can be busy in summer. Know which one your rental uses before you book.' },
       { type: 'h2', text: '3. Is the pool heated — and what does it cost?' },
-      { type: 'p', text: 'A [private pool](https://livegulflife.com/vacation-rentals-with-a-private-pool/) in March is only a perk if it’s heated. Ask whether heating is available, whether it’s an add-on fee, and how many days’ notice the heater needs.' },
+      { type: 'p', text: 'A [private pool](/vacation-rentals-with-a-private-pool/) in March is only a perk if it’s heated. Ask whether heating is available, whether it’s an add-on fee, and how many days’ notice the heater needs.' },
       { type: 'h2', text: '4. Who do I call at 9pm when the AC dies?' },
       { type: 'p', text: 'This is the question that separates professionally managed homes from absentee listings. If the answer is "message the owner and hope," think twice. A local management team with staff on the ground can fix problems the same day — usually within hours.' },
       { type: 'h2', text: '5. What’s actually included in the fees?' },
@@ -250,7 +250,7 @@ export const POSTS: BlogPost[] = [
       { type: 'h2', text: '9. Who’s behind the listing?' },
       { type: 'p', text: 'Finally: book with someone accountable. Read the [guest reviews](/guest-reviews), check that there’s a real local team with a real phone number, and book direct when you can — it’s usually cheaper than the big platforms and always better supported.' },
       { type: 'h2', text: 'The Easy Version' },
-      { type: 'p', text: 'Every Gulf Life Concierge home comes with straight answers to all nine of these questions — plus a local team on call throughout your stay. [Browse our 30A rentals](https://livegulflife.com/search-results/) or [ask us anything](/contact-us) before you book.' },
+      { type: 'p', text: 'Every Gulf Life Concierge home comes with straight answers to all nine of these questions — plus a local team on call throughout your stay. [Browse our 30A rentals](/search-results/) or [ask us anything](/contact-us) before you book.' },
     ],
   },
 

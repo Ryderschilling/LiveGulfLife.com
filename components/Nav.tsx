@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-const WP = 'https://livegulflife.com'
+const WP = ''
 const LOGO_WHITE = '/logo-white.svg'
 const LOGO_DARK  = '/logo-dark.svg'
 
@@ -223,7 +223,7 @@ export default function Nav() {
                 <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
               </svg>
             </a>
-            <a href="mailto:Connect@LiveGulfLife.com" style={{ color: linkColor, display: 'flex', transition: 'opacity 0.2s' }} aria-label="Email"
+            <a href="mailto:Host@LiveGulfLife.com" style={{ color: linkColor, display: 'flex', transition: 'opacity 0.2s' }} aria-label="Email"
               onMouseEnter={e => (e.currentTarget.style.opacity = '0.6')} onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>
               <svg width="20" height="16" viewBox="0 0 24 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="2" width="20" height="16" rx="2" /><polyline points="2,2 12,11 22,2" />
