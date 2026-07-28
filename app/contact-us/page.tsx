@@ -3,11 +3,11 @@
 import { useState, useEffect, useRef } from 'react'
 
 const WP = ''
-const UP = `${WP}/wp-content/uploads/2025/11`
+const UP = '/img'
 
 const IMG = {
-  hero:  `${UP}/AdobeStock_371083969-scaled.jpeg`,
-  beach: `${UP}/original_169210140_beach_front-e1764087084845.jpeg`,
+  hero:  `${UP}/concierge-cta.jpg`,
+  beach: `${UP}/beachfront.jpg`,
 }
 
 function useIsMobile(bp = 768) {

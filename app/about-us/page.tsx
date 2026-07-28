@@ -1,12 +1,12 @@
 import Link from 'next/link'
 
 const WP = ''
-const UP  = `${WP}/wp-content/uploads/2025/11`
+const UP  = '/img'
 
 const IMG = {
-  banner:   `${UP}/image-2.jpg`,
-  side:     `${UP}/image-3.jpg`,
-  logoIcon: `${UP}/GLC-logo-white.svg`,
+  banner:   `${UP}/about-1.jpg`,
+  side:     `${UP}/about-2.jpg`,
+  logoIcon: '/logo-white.svg',
 }
 
 type TeamMember = {

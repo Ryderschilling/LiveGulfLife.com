@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 const WP = ''
-const UP = `${WP}/wp-content/uploads/2025/11`
+const UP = '/img'
 
 const LOCATIONS = [
   { id: 'grayton',   label: 'Grayton Beach',    tag: 'Beachfront',      properties: 6, href: `${WP}/search-results/?location=Grayton+Beach` },

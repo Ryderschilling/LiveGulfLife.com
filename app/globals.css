@@ -817,11 +817,11 @@ main {
 
 /* ---------------------------------------------------------------
    TEMPORARY: WordPress media placeholder
-   While WORDPRESS_URL is unset, /wp-content/ images 404. This makes
+   Until the real photos land in public/img/, these 404. This makes
    them read as a soft brand-coloured panel instead of a broken-image
    icon with alt text. Safe to delete once the WP origin is wired up.
    --------------------------------------------------------------- */
-img[src^="/wp-content/"] {
+img[src^="/img/"] {
   background: linear-gradient(160deg, #3d4864 0%, #2B354E 100%);
   color: transparent;
   font-size: 0;

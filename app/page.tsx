@@ -7,19 +7,19 @@ import Map30A from '@/components/Map30A'
 import WaveDivider from '@/components/WaveDivider'
 
 const WP = ''
-const UP = `${WP}/wp-content/uploads/2025/11`
+const UP = '/img'
 
 const IMG = {
-  hero:       `${UP}/image-1.jpg`,
-  propMgmt:   `${UP}/AdobeStock_653632793-scaled.jpeg`,
-  ctaDiff:    `${UP}/AdobeStock_371083969-scaled.jpeg`,
-  commitment: `${UP}/AdobeStock_214368481.jpeg`,
+  hero:       `${UP}/hero.jpg`,
+  propMgmt:   `${UP}/property-management.jpg`,
+  ctaDiff:    `${UP}/concierge-cta.jpg`,
+  commitment: `${UP}/commitment.jpg`,
   checkIcon:  `${UP}/check-light.svg`,
-  logoIcon:   `${UP}/GLC-logo-white.svg`,
-  locPool:    `${UP}/original_169209707_private_pool-e1764190709180.jpeg`,
-  locResort:  `${UP}/original_169986477_resorts.jpeg`,
-  locBeach:   `${UP}/original_169210140_beach_front-e1764087084845.jpeg`,
-  locAll:     `${UP}/GLV_header_beachfront.jpeg`,
+  logoIcon:   '/logo-white.svg',
+  locPool:    `${UP}/private-pool.jpg`,
+  locResort:  `${UP}/resort.jpg`,
+  locBeach:   `${UP}/beachfront.jpg`,
+  locAll:     `${UP}/all-rentals.jpg`,
 }
 
 // ── Mobile detection ─────────────────────────────────────
