@@ -35,7 +35,17 @@ const TEAM: TeamMember[] = [
   { name: 'Jim McGehee', role: 'Gulf Life Team' },
   { name: 'Samantha Reid', role: 'Gulf Life Team' },
   { name: 'Mark', role: 'Gulf Life Team' },
-  { name: 'Erin Brockman', role: 'Gulf Life Team' },
+  {
+    name: 'Erin Brockman',
+    role: 'Property Inspector & Compliance Coordinator',
+    bio:
+      'Erin helps ensure every Gulf Life Concierge vacation home is guest-ready through ' +
+      'detailed property inspections, and supports the onboarding of new properties by ' +
+      'assisting with county compliance requirements. She has proudly called the Emerald ' +
+      'Coast home for nearly 10 years. As a wife and mother, Erin values faith, family, ' +
+      'and serving others, and she enjoys spending time with her family and making the ' +
+      'most of life at the beach.',
+  },
 ]
 
 const STATS = [
