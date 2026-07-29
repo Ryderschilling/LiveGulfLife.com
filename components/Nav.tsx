@@ -183,7 +183,7 @@ export default function Nav() {
             </Link>
           </div>
 
-          {/* CENTER — Logo */}
+          {/* CENTER: Logo */}
           <div style={{
             position: 'absolute', left: '50%',
             transform: `translateX(-50%) translateY(${transparent ? '10px' : '0px'})`,
@@ -254,9 +254,9 @@ export default function Nav() {
 
           {[
             { label: 'All Vacation Rentals', href: `${WP}/search-results/` },
-            { label: '— Beach Front',  href: `${WP}/beach-front-vacation-rentals/`, sub: true },
-            { label: '— Resort Stays', href: `${WP}/resort-vacation-rentals/`, sub: true },
-            { label: '— Private Pools',href: `${WP}/vacation-rentals-with-a-private-pool/`, sub: true },
+            { label: 'Beach Front',  href: `${WP}/beach-front-vacation-rentals/`, sub: true },
+            { label: 'Resort Stays', href: `${WP}/resort-vacation-rentals/`, sub: true },
+            { label: 'Private Pools',href: `${WP}/vacation-rentals-with-a-private-pool/`, sub: true },
             { label: 'About Us',           href: '/about-us' },
             { label: 'For Owners',         href: '/property-management' },
             { label: 'Guest Reviews',      href: '/guest-reviews' },

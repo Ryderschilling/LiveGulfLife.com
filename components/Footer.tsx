@@ -47,7 +47,7 @@ export default function Footer() {
             gap: isMobile ? '40px' : '48px',
             marginBottom: isMobile ? '36px' : '52px',
           }}>
-            {/* CENTER — Logo + subscribe (first on mobile) */}
+            {/* CENTER: Logo + subscribe (first on mobile) */}
             <div style={{ textAlign: 'center', order: isMobile ? -1 : 0, minWidth: isMobile ? 'auto' : '320px' }}>
               <div style={{ position: 'relative', display: 'inline-block', marginBottom: '24px' }}>
                 <div style={{
@@ -91,7 +91,7 @@ export default function Footer() {
               </form>
             </div>
 
-            {/* LEFT — Contact */}
+            {/* LEFT: Contact */}
             <div style={{ textAlign: isMobile ? 'center' : 'left' }}>
               <h4 style={{
                 fontFamily: 'Montserrat, sans-serif', fontSize: '11px', fontWeight: 700,
@@ -112,7 +112,7 @@ export default function Footer() {
               </p>
             </div>
 
-            {/* RIGHT — Links */}
+            {/* RIGHT: Links */}
             <div style={{ textAlign: isMobile ? 'center' : 'right' }}>
               <h4 style={{
                 fontFamily: 'Montserrat, sans-serif', fontSize: '11px', fontWeight: 700,

@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
 }
 
-// Next.js 14: viewport MUST be a separate export — NOT inside metadata
+// Next.js 14: viewport MUST be a separate export, NOT inside metadata
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,

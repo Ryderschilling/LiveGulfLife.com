@@ -62,7 +62,7 @@ main {
   overflow-x: hidden;
 }
 
-/* ─── CUSTOM CURSOR — hide default on desktop ─────── */
+/* ─── CUSTOM CURSOR: hide default on desktop ─────── */
 @media (pointer: fine) {
   *, *::before, *::after {
     cursor: none !important;

@@ -59,16 +59,16 @@ const LOCATIONS = Object.keys(ESTIMATES) as LocKey[]
 const BEDROOMS: BedKey[] = [2, 3, 4, 5]
 
 const FAQS = [
-  { q: "What is your management commission?", a: "We offer competitive, transparent rates with zero hidden fees. Every dollar is accounted for in your monthly distribution report. Call us to get a personalized quote — most owners are surprised by how much more they net with us versus larger platforms." },
+  { q: "What is your management commission?", a: "We offer competitive, transparent rates with zero hidden fees. Every dollar is accounted for in your monthly distribution report. Call us to get a personalized quote. Most owners are surprised by how much more they net with us versus larger platforms." },
   { q: "Do I have to sign a long-term contract?", a: "No. We believe in earning your business every month, not locking you in. We work on flexible agreements because we're confident our results speak for themselves." },
-  { q: "How do you handle maintenance issues?", a: "We have a network of trusted local contractors and handle all coordination on your behalf. You're notified for anything above a pre-agreed threshold. Small things get fixed fast — you don't have to manage a thing." },
-  { q: "What platforms do you list my property on?", a: "We list across all major platforms including Airbnb, VRBO, Booking.com, and our own direct booking channel — plus targeted social and email marketing. We optimize pricing dynamically to maximize your revenue." },
-  { q: "How and when do I get paid?", a: "Monthly distributions with a full accounting breakdown. You know exactly what came in, what went out, and what's yours — every single month." },
-  { q: "Can I still use my property for personal stays?", a: "Absolutely. Owner blocks are built into our system. Just give us notice and your dates are reserved — we work around your schedule, not the other way around." },
+  { q: "How do you handle maintenance issues?", a: "We have a network of trusted local contractors and handle all coordination on your behalf. You're notified for anything above a pre-agreed threshold. Small things get fixed fast. You don't have to manage a thing." },
+  { q: "What platforms do you list my property on?", a: "We list across all major platforms including Airbnb, VRBO, Booking.com, and our own direct booking channel, plus targeted social and email marketing. We optimize pricing dynamically to maximize your revenue." },
+  { q: "How and when do I get paid?", a: "Monthly distributions with a full accounting breakdown. You know exactly what came in, what went out, and what's yours, every single month." },
+  { q: "Can I still use my property for personal stays?", a: "Absolutely. Owner blocks are built into our system. Just give us notice and your dates are reserved. We work around your schedule, not the other way around." },
 ]
 
 const OWNER_REVIEWS = [
-  { text: "After 3 years with a national company, we switched to Gulf Life. Revenue jumped 28% in year one — and we finally have someone who actually picks up the phone.", reviewer: "Mark & Diane S.", location: "Watersound Origins", stat: "+28% revenue" },
+  { text: "After 3 years with a national company, we switched to Gulf Life. Revenue jumped 28% in year one, and we finally have someone who actually picks up the phone.", reviewer: "Mark & Diane S.", location: "Watersound Origins", stat: "+28% revenue" },
   { text: "They treat our home like it's their own. Not a number in a system. John knows every inch of our property and every guest who's stayed there.", reviewer: "Patricia L.", location: "Rosemary Beach", stat: "5★ every month", featured: true },
   { text: "We were hesitant to list with anyone local, but Gulf Life proved us wrong. Zero issues in two seasons. Our property earns more and we stress less.", reviewer: "The Roberts Family", location: "Grayton Beach", stat: "2 seasons, 0 issues" },
 ]
@@ -171,7 +171,7 @@ export default function PropertyManagementPage() {
             </h1>
             <div style={{ width: '50px', height: '2px', background: '#AB9055', margin: '20px 0' }} />
             <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.82)', lineHeight: 1.8, marginBottom: '36px' }}>
-              Local. Veteran-owned. Zero hidden fees. We manage your Gulf Coast property like it&apos;s our own — so you collect checks without lifting a finger.
+              Local. Veteran-owned. Zero hidden fees. We manage your Gulf Coast property like it&apos;s our own, so you collect checks without lifting a finger.
             </p>
             <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
               <button onClick={scrollToForm} className="btn-gold" style={{ fontSize: '13px' }}>Get My Free Evaluation</button>
@@ -250,7 +250,7 @@ export default function PropertyManagementPage() {
                   <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: isMobile ? '36px' : 'clamp(42px, 5vw, 64px)', fontWeight: 300, color: '#fff', lineHeight: 1, letterSpacing: '-0.02em' }}>
                     <span style={{ color: '#AB9055' }}>$</span>{low.toLocaleString()}
                     <span style={{ fontSize: '0.55em', color: 'rgba(255,255,255,0.5)', fontWeight: 400 }}>K</span>
-                    <span style={{ fontSize: '0.45em', color: 'rgba(255,255,255,0.35)', margin: '0 8px' }}>—</span>
+                    <span style={{ fontSize: '0.45em', color: 'rgba(255,255,255,0.35)', margin: '0 8px' }}>–</span>
                     <span style={{ color: '#AB9055' }}>$</span>{high.toLocaleString()}
                     <span style={{ fontSize: '0.55em', color: 'rgba(255,255,255,0.5)', fontWeight: 400 }}>K</span>
                   </div>
@@ -293,12 +293,12 @@ export default function PropertyManagementPage() {
             </h2>
           </div>
 
-          {/* Steps — single column on mobile */}
+          {/* Steps: single column on mobile */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0', ...reveal(s2.visible, 0.1) }}>
             {[
-              { step: '01', title: 'Free Evaluation Call', body: "Tell us about your property. We'll review its potential, share comparable revenue, and walk you through exactly what we do. No sales pressure — just real information.", icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#AB9055" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg> },
-              { step: '02', title: 'We Handle Everything', body: 'Listing, photography, pricing, guests, maintenance, cleaning — all managed by our team. You get access to your owner dashboard and a direct line to your property manager.', icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#AB9055" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> },
-              { step: '03', title: 'You Collect Checks', body: 'Monthly distributions hit your account with full transparency — every dollar accounted for. Watch your property earn more with less work than you ever thought possible.', icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#AB9055" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> },
+              { step: '01', title: 'Free Evaluation Call', body: "Tell us about your property. We'll review its potential, share comparable revenue, and walk you through exactly what we do. No sales pressure, just real information.", icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#AB9055" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg> },
+              { step: '02', title: 'We Handle Everything', body: 'Listing, photography, pricing, guests, maintenance and cleaning are all managed by our team. You get access to your owner dashboard and a direct line to your property manager.', icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#AB9055" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> },
+              { step: '03', title: 'You Collect Checks', body: 'Monthly distributions hit your account with full transparency, every dollar accounted for. Watch your property earn more with less work than you ever thought possible.', icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#AB9055" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> },
             ].map((item, i) => (
               <div key={i} style={{
                 display: 'flex', gap: isMobile ? '20px' : '0',
@@ -338,7 +338,7 @@ export default function PropertyManagementPage() {
           </div>
 
           {!isMobile && (
-            /* Desktop connector arrows injected via CSS — skip for now, keep simple */
+            /* Desktop connector arrows injected via CSS. Skipped for now to keep it simple */
             <></>
           )}
 
@@ -455,7 +455,7 @@ export default function PropertyManagementPage() {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '0' : '60px', alignItems: 'center', ...reveal(s5.visible, 0.1) }}>
-            {/* Image — hidden on mobile */}
+            {/* Image: hidden on mobile */}
             {!isMobile && (
               <div style={{ borderRadius: '6px', overflow: 'hidden', position: 'relative' }}>
                 <img src={IMG.poolImg} alt="Gulf Life managed property" style={{ width: '100%', height: '420px', objectFit: 'cover', display: 'block' }} />
@@ -584,7 +584,7 @@ export default function PropertyManagementPage() {
               </div>
             ) : (
               <>
-                {/* Form fields — single column on mobile */}
+                {/* Form fields: single column on mobile */}
                 <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
                   {[
                     { name: 'name',    placeholder: 'Your Name *',       type: 'text',  required: true  },
@@ -601,7 +601,7 @@ export default function PropertyManagementPage() {
                   ))}
                 </div>
 
-                <textarea name="message" placeholder="Tell us about your property — location, bedrooms, current booking status..."
+                <textarea name="message" placeholder="Tell us about your property: location, bedrooms, current booking status..."
                   value={form.message} onChange={handleChange}
                   style={{ width: '100%', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', padding: '14px 16px', fontFamily: 'Outfit, sans-serif', fontSize: '15px', color: '#fff', outline: 'none', borderRadius: '6px', resize: 'vertical', minHeight: '100px', marginBottom: '20px', transition: 'border-color 0.2s' }}
                   onFocus={e => (e.currentTarget.style.borderColor = 'rgba(171,144,85,0.6)')}

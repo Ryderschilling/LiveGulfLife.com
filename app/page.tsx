@@ -59,17 +59,17 @@ const revealStyle = (visible: boolean, delay = 0): React.CSSProperties => ({
 
 // ── Why Gulf Life feature items ──────────────────────────
 const FEATURES = [
-  { num: '01', title: 'No Additional Fees',           body: 'Transparent pricing, always. No surprise charges, no nickel-and-diming — ever.' },
+  { num: '01', title: 'No Additional Fees',           body: 'Transparent pricing, always. No surprise charges, no nickel-and-diming. Ever.' },
   { num: '02', title: 'Professional Guest Comms',     body: 'Every inquiry handled promptly. Guests feel taken care of from first message to checkout.' },
   { num: '03', title: 'Dedicated Property Manager',   body: 'One real person who knows your property. No call centers, no hold times.' },
-  { num: '04', title: 'Full Marketing Coverage',      body: 'Listed everywhere guests book — at no extra cost to you.' },
+  { num: '04', title: 'Full Marketing Coverage',      body: 'Listed everywhere guests book, at no extra cost to you.' },
   { num: '05', title: 'Guest-Covered Cleaning Fees',  body: 'Cleaning and inspection fees are passed to guests. You keep more of what you earn.' },
 ]
 
 // ── Reviews ──────────────────────────────────────────────
 const REVIEWS = [
   {
-    text: 'The house had everything we needed and more — we felt right at home. Perfect family vacation with 4 kids and parents! Communication was excellent from start to finish.',
+    text: 'The house had everything we needed and more. We felt right at home. Perfect family vacation with 4 kids and parents! Communication was excellent from start to finish.',
     reviewer: 'Sarah M.',
     property: '30A Beach House',
     rating: 5,
@@ -82,7 +82,7 @@ const REVIEWS = [
     featured: true,
   },
   {
-    text: 'The Gulf Life team were wonderful! Great recommendations on things to do. The community pool was fantastic. We are already planning our return trip — this place has our hearts.',
+    text: 'The Gulf Life team were wonderful! Great recommendations on things to do. The community pool was fantastic. We are already planning our return trip. This place has our hearts.',
     reviewer: 'Michael & Lisa T.',
     property: 'Grayton Beach Villa',
     rating: 5,
@@ -421,7 +421,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Scroll indicator — hide on mobile */}
+        {/* Scroll indicator: hide on mobile */}
         {!isMobile && (
           <div style={{
             position: 'absolute', bottom: '32px', left: '50%',
@@ -460,7 +460,7 @@ export default function HomePage() {
           gap: isMobile ? '40px' : '80px',
           alignItems: 'center',
         }}>
-          {/* Left — copy */}
+          {/* Left: copy */}
           <div style={revealStyle(s2.visible, 0)}>
             <p style={{
               fontFamily: 'Montserrat, sans-serif', fontSize: '10px', fontWeight: 700,
@@ -477,19 +477,19 @@ export default function HomePage() {
             <div style={{ width: '50px', height: '2px', background: '#AB9055', marginBottom: '28px' }} />
             <p style={{ fontSize: '16px', color: '#4A4A4A', lineHeight: 1.85, marginBottom: '20px' }}>
               At Gulf Life Concierge, we believe a vacation should feel effortless from the moment
-              you book to the moment you leave. Our mission is simple — deliver the highest quality
+              you book to the moment you leave. Our mission is simple: deliver the highest quality
               service, tailored to the unique needs of every guest.
             </p>
             <p style={{ fontSize: '16px', color: '#4A4A4A', lineHeight: 1.85, marginBottom: '40px' }}>
               As a local, veteran-owned company with deep roots in the 30A community, we know
-              these properties — and this coastline — like it's our own backyard. Because it is.
+              these properties, and this coastline, like it's our own backyard. Because it is.
             </p>
             <a href={`${WP}/search-results/`} className="btn-navy">
               Browse Properties
             </a>
           </div>
 
-          {/* Right — lifestyle images (hidden on mobile to save space) */}
+          {/* Right: lifestyle images (hidden on mobile to save space) */}
           {!isMobile && (
             <div style={{ ...revealStyle(s2.visible, 0.15), display: 'grid', gridTemplateRows: '1fr 1fr', gap: '12px', height: '480px' }}>
               <div style={{ position: 'relative', overflow: 'hidden', borderRadius: '4px' }}>
@@ -679,7 +679,7 @@ export default function HomePage() {
           minHeight: isMobile ? 'auto' : '560px',
         }}
       >
-        {/* Image — hidden on mobile OR shown above */}
+        {/* Image: hidden on mobile OR shown above */}
         {!isMobile && (
           <div style={{ position: 'relative', overflow: 'hidden' }}>
             <img
@@ -755,7 +755,7 @@ export default function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════
-          7. LIFESTYLE — Full-bleed cinematic
+          7. LIFESTYLE: Full-bleed cinematic
       ════════════════════════════════════════════════ */}
       <section
         ref={s5.ref as React.RefObject<HTMLElement>}
@@ -806,7 +806,7 @@ export default function HomePage() {
               Days on the most beautiful stretch of coastline in America.
             </p>
             <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.78)', lineHeight: 1.85, marginBottom: '36px' }}>
-              No hassle, no surprises — just an exceptional stay you&apos;ll book again next year.
+              No hassle, no surprises, just an exceptional stay you&apos;ll book again next year.
             </p>
 
             <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -997,9 +997,9 @@ export default function HomePage() {
           <div style={{ width: '50px', height: '2px', background: '#AB9055', marginBottom: '32px' }} />
 
           {[
-            'Higher revenue — we market where guests actually book',
-            'Zero hidden fees — transparent pricing from day one',
-            'Dedicated manager — real person, real phone number',
+            'Higher revenue: we market where guests actually book',
+            'Zero hidden fees: transparent pricing from day one',
+            'Dedicated manager: real person, real phone number',
           ].map((text, i) => (
             <div key={i} style={{ display: 'flex', gap: '14px', marginBottom: '18px', alignItems: 'flex-start' }}>
               <div style={{
@@ -1030,7 +1030,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Image — hidden on mobile */}
+        {/* Image: hidden on mobile */}
         {!isMobile && (
           <div style={{ position: 'relative', overflow: 'hidden' }}>
             <img
@@ -1084,7 +1084,7 @@ export default function HomePage() {
               'Marketing and booking management across all major platforms',
               'Property maintenance and cleaning coordination',
               'Rent collection and monthly distributions with detailed accounting',
-              'Personalized owner perks — design, outfitting, and exterior care',
+              'Personalized owner perks: design, outfitting, and exterior care',
               'Homewatch: regular visual inspections and preventative maintenance',
               'Guest communications and emergency response 24/7',
             ].map((item, i) => (
@@ -1122,7 +1122,7 @@ export default function HomePage() {
         gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
         minHeight: isMobile ? 'auto' : '560px',
       }}>
-        {/* Left — dark image (hidden on mobile to keep it clean) */}
+        {/* Left: dark image (hidden on mobile to keep it clean) */}
         {!isMobile && (
           <div style={{ position: 'relative', overflow: 'hidden' }}>
             <img
@@ -1164,7 +1164,7 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* Right — form */}
+        {/* Right: form */}
         <div style={{ background: '#fff', padding: isMobile ? '48px 24px' : '64px 60px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           {/* Mobile: show abbreviated heading */}
           {isMobile && (

@@ -7,11 +7,11 @@ const WP = ''
 const REVIEWS = [
   {
     id: 1,
-    title: 'Absolutely Perfect — Already Booked Again',
+    title: 'Absolutely Perfect, Already Booked Again',
     reviewer: 'Sarah M.',
     date: 'October 2025',
     rating: 5,
-    text: 'The house had everything we needed and more — we felt right at home and had plenty of space!! Perfect family vacation with 4 kiddos and parents! Communication was excellent from start to finish. Gulf Life made everything effortless.',
+    text: 'The house had everything we needed and more. We felt right at home and had plenty of space!! Perfect family vacation with 4 kiddos and parents! Communication was excellent from start to finish. Gulf Life made everything effortless.',
     property: '30A Beach House',
     propertyUrl: `${WP}/search-results/`,
     tag: 'Family',
@@ -112,7 +112,7 @@ function Stars({ count, size = 16 }: { count: number; size?: number }) {
   )
 }
 
-// Uniform card — same layout on both mobile and desktop
+// Uniform card: same layout on both mobile and desktop
 function ReviewCard({ review, delay = 0, featured = false }: {
   review: typeof REVIEWS[0]
   delay?: number
@@ -147,7 +147,7 @@ function ReviewCard({ review, delay = 0, featured = false }: {
         transition: `opacity 0.6s ease ${delay}s, transform 0.6s ease ${delay}s`,
       }}
     >
-      {/* Decorative quote — top right */}
+      {/* Decorative quote: top right */}
       <div style={{
         position: 'absolute', top: '10px', right: '18px',
         fontFamily: 'Georgia, serif', fontSize: '64px', lineHeight: 1,

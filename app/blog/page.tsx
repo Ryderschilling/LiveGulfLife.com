@@ -5,7 +5,7 @@ import { getAllPosts, SITE_URL } from '@/lib/blog'
 export const metadata: Metadata = {
   title: '30A Travel Guide & Blog | Gulf Life Concierge',
   description:
-    'Local guides to 30A and the Emerald Coast — the best time to visit, things to do, where to stay, and vacation rental tips from the Gulf Life Concierge team.',
+    'Local guides to 30A and the Emerald Coast: the best time to visit, things to do, where to stay, and vacation rental tips from the Gulf Life Concierge team.',
   alternates: { canonical: `${SITE_URL}/blog` },
   openGraph: {
     title: '30A Travel Guide & Blog | Gulf Life Concierge',
@@ -34,7 +34,7 @@ export default function BlogIndexPage() {
           style={{ width: '50px', height: '2px', background: '#AB9055', margin: '0 auto 20px', animation: 'floatUp 0.7s ease 0.45s both' }}
         />
         <p className="blog-hero-sub" style={{ animation: 'floatUp 0.7s ease 0.55s both' }}>
-          Where to stay, when to come, and what to do on the Emerald Coast — written by the
+          Where to stay, when to come, and what to do on the Emerald Coast, written by the
           local team that lives it year-round.
         </p>
       </section>

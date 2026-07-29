@@ -59,7 +59,7 @@ const VALUES = [
   {
     num: '01',
     title: 'Local Expertise',
-    body: "Born and raised on the Gulf Coast, our team knows every beach, restaurant, and hidden gem the area has to offer. We don't just manage properties — we live the life we help our guests experience.",
+    body: "Born and raised on the Gulf Coast, our team knows every beach, restaurant, and hidden gem the area has to offer. We don't just manage properties. We live the life we help our guests experience.",
   },
   {
     num: '02',
@@ -127,7 +127,7 @@ export default function AboutPage() {
                 Emerald Coast, Florida
               </p>
               <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.88)', lineHeight: 1.65 }}>
-                Where the Gulf meets luxury — this is where we call home.
+                Where the Gulf meets luxury. This is where we call home.
               </p>
             </div>
           </div>
@@ -152,7 +152,7 @@ export default function AboutPage() {
                 fontFamily: 'Outfit, sans-serif', fontSize: '19px', fontWeight: 300,
                 fontStyle: 'italic', color: '#2B354E', lineHeight: 1.7,
               }}>
-                "We treat every property as if it were our own — and every guest as if they were family."
+                "We treat every property as if it were our own, and every guest as if they were family."
               </p>
             </blockquote>
 
@@ -160,7 +160,7 @@ export default function AboutPage() {
               Gulf Life Concierge was built on a simple belief: the Gulf Coast deserves world-class hospitality. As a family and veteran owned business, we bring integrity, dedication, and genuine care to every property we manage and every guest we serve.
             </p>
             <p style={{ fontSize: '16px', color: '#4A4A4A', lineHeight: 1.9, marginBottom: '44px' }}>
-              From the moment a guest books to the second they check out, we handle every detail — so owners rest easy and guests focus on what matters: making memories on one of the most beautiful coastlines in the world.
+              From the moment a guest books to the second they check out, we handle every detail, so owners rest easy and guests focus on what matters: making memories on one of the most beautiful coastlines in the world.
             </p>
             <div style={{ display: 'flex', gap: '24px', alignItems: 'center', flexWrap: 'wrap' }}>
               <Link href="/contact-us" className="btn-navy">Work With Us</Link>
@@ -217,7 +217,7 @@ export default function AboutPage() {
             <div style={{ width: '50px', height: '2px', background: 'var(--gold)', margin: '0 auto' }} />
           </div>
 
-          {/* Value cards — single column on mobile, 3-col on desktop */}
+          {/* Value cards: single column on mobile, 3-col on desktop */}
           <div className="about-values-grid">
             {VALUES.map((v, i) => (
               <div key={i} className="value-card">
@@ -277,7 +277,7 @@ export default function AboutPage() {
             Our Commitment
           </p>
           <h2 className="about-commitment-quote">
-            "The Gulf Coast isn't just where we work — it's where we live, love, and build our lives. That's the difference you feel when you choose Gulf Life Concierge."
+            "The Gulf Coast isn't just where we work. It's where we live, love, and build our lives. That's the difference you feel when you choose Gulf Life Concierge."
           </h2>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px', justifyContent: 'center' }}>
@@ -365,7 +365,7 @@ export default function AboutPage() {
             fontSize: '17px', color: 'rgba(255,255,255,0.65)',
             lineHeight: 1.8, marginBottom: '48px',
           }}>
-            Whether you&rsquo;re planning your dream Gulf Coast vacation or looking to maximize your property&rsquo;s income potential — we&rsquo;re here to make it happen.
+            Whether you&rsquo;re planning your dream Gulf Coast vacation or looking to maximize your property&rsquo;s income potential, we&rsquo;re here to make it happen.
           </p>
           <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
             <Link href="/contact-us" className="btn-gold">Contact Us Today</Link>

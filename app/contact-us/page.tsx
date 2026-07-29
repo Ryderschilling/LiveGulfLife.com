@@ -109,7 +109,7 @@ export default function ContactPage() {
             </h2>
           </div>
 
-          {/* Cards — single column on mobile */}
+          {/* Cards: single column on mobile */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', ...reveal(s1.visible, 0.05) }}>
             {[
               {
@@ -171,7 +171,7 @@ export default function ContactPage() {
         gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
         minHeight: isMobile ? 'auto' : '400px',
       }}>
-        {/* Image — top on mobile, left on desktop */}
+        {/* Image: top on mobile, left on desktop */}
         <div style={{ position: 'relative', overflow: 'hidden', minHeight: isMobile ? '220px' : '400px' }}>
           <img src={IMG.beach} alt="30A beachfront" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', position: 'absolute', inset: 0 }} />
           <div style={{ position: 'absolute', top: '16px', left: '16px', width: '36px', height: '36px', borderTop: '2px solid #AB9055', borderLeft: '2px solid #AB9055' }} />
@@ -193,10 +193,10 @@ export default function ContactPage() {
           </h2>
           <div style={{ width: '40px', height: '2px', background: '#AB9055', marginBottom: '24px' }} />
           <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.78)', lineHeight: 1.85, marginBottom: '16px' }}>
-            When you reach out to Gulf Life Concierge, you&rsquo;re talking directly to the person who manages your property or booked your stay. I personally respond to every inquiry — usually within a few hours, never more than 24.
+            When you reach out to Gulf Life Concierge, you&rsquo;re talking directly to the person who manages your property or booked your stay. I personally respond to every inquiry, usually within a few hours, never more than 24.
           </p>
           <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.78)', lineHeight: 1.85, marginBottom: '32px' }}>
-            If you have a question, a request, or just need a local recommendation — call, text, or email. We&rsquo;re here.
+            If you have a question, a request, or just need a local recommendation, call, text, or email. We&rsquo;re here.
           </p>
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
             <a href="tel:8508427619" className="btn-gold" style={{ fontSize: '12px' }}>Call Now</a>
@@ -224,7 +224,7 @@ export default function ContactPage() {
               Tell Us How We Can Help
             </h2>
             <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.45)', maxWidth: '440px', margin: '0 auto' }}>
-              Vacation booking, property inquiry, local recommendations — anything goes.
+              Vacation booking, property inquiry, local recommendations. Anything goes.
             </p>
           </div>
 
@@ -253,7 +253,7 @@ export default function ContactPage() {
                     />
                   ))}
                 </div>
-                <textarea name="message" placeholder="Tell us what you're looking for — dream vacation, property management inquiry, local tips, anything..." value={form.message} onChange={handleChange}
+                <textarea name="message" placeholder="Tell us what you're looking for: dream vacation, property management inquiry, local tips, anything..." value={form.message} onChange={handleChange}
                   style={{ ...inputStyle, resize: 'vertical', minHeight: '120px', marginBottom: '20px' }}
                   onFocus={e => (e.currentTarget.style.borderColor = 'rgba(171,144,85,0.6)')}
                   onBlur={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)')}
@@ -285,9 +285,9 @@ export default function ContactPage() {
           {/* Single column on mobile */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {[
-              { q: 'What areas do you cover?',     a: '30A and the full Emerald Coast — Watersound, Rosemary Beach, Seaside, Grayton Beach, and beyond.' },
+              { q: 'What areas do you cover?',     a: '30A and the full Emerald Coast: Watersound, Rosemary Beach, Seaside, Grayton Beach, and beyond.' },
               { q: 'How fast will I hear back?',   a: 'John personally responds to every message. During business hours, usually within 2 hours.' },
-              { q: 'Can I book directly with you?',a: "Yes. Reach out and we'll work with you directly — no third-party platform fees involved." },
+              { q: 'Can I book directly with you?',a: "Yes. Reach out and we'll work with you directly, with no third-party platform fees involved." },
             ].map((item, i) => (
               <div key={i} style={{ background: '#fff', borderRadius: '12px', padding: isMobile ? '22px 20px' : '28px 28px', border: '1px solid rgba(43,53,78,0.07)', boxShadow: '0 2px 12px rgba(43,53,78,0.05)', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                 {/* Gold number */}
