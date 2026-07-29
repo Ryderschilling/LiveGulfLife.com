@@ -2,6 +2,8 @@ import https from 'node:https'
 import http from 'node:http'
 import { PUBLIC_HOST, WP_ORIGIN } from './wp-origin'
 
+const IS_IP = /^\d{1,3}(?:\.\d{1,3}){3}$/
+
 type OriginResponse = {
   status: number
   headers: Record<string, string | string[] | undefined>
@@ -52,8 +54,12 @@ function singleRequest(
         method,
         headers,
         // TLS is negotiated against the real origin hostname even though the
-        // Host header claims to be livegulflife.com.
-        servername: isHttps ? target.hostname : undefined,
+        // Host header claims to be livegulflife.com. When the origin is given as
+        // a bare IP there is no name to present, and the certificate the host
+        // actually holds is the public domain, so use that for SNI instead.
+        servername: isHttps
+          ? (IS_IP.test(target.hostname) ? PUBLIC_HOST : target.hostname)
+          : undefined,
         timeout: 20000,
       } as https.RequestOptions,
       (res) => {
