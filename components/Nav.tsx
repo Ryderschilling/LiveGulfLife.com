@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-const WP = ''
+const WP = 'https://livegulflife.com'
 const LOGO_WHITE = '/logo-white.svg'
 const LOGO_DARK  = '/logo-dark.svg'
 

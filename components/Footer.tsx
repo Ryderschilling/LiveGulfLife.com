@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-const WP = ''
+const WP = 'https://livegulflife.com'
 const LOGO_WHITE = '/logo-white.svg'
 
 function useIsMobile(bp = 768) {
@@ -171,12 +171,12 @@ export default function Footer() {
           }}>
             <span>© 2026 Gulf Life Concierge. All rights reserved.</span>
             <div style={{ display: 'flex', gap: '20px' }}>
-              <a href={`${WP}/terms-and-conditions/`} style={{ color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}>
+              <Link href="/terms-and-conditions" style={{ color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}>
                 Terms &amp; Conditions
-              </a>
-              <a href={`${WP}/privacy-policy/`} style={{ color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}>
+              </Link>
+              <Link href="/privacy-policy" style={{ color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}>
                 Privacy Policy
-              </a>
+              </Link>
             </div>
           </div>
         </div>

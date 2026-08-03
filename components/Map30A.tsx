@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-const WP = ''
-const UP = '/img'
+const WP = 'https://livegulflife.com'
+const UP = `${WP}/wp-content/uploads/2025/11`
 
 const LOCATIONS = [
   { id: 'grayton',   label: 'Grayton Beach',    tag: 'Beachfront',      properties: 6, href: `${WP}/search-results/?location=Grayton+Beach` },

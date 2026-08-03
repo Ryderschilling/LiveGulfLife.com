@@ -392,6 +392,32 @@ main {
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .team-card:hover .team-photo-img { transform: scale(1.04); }
+
+/* ── Whole-photo cards ─────────────────────────────
+   For group shots where a 3:4 crop would slice someone in half.
+   The full photo sits centred and uncropped, and a blurred copy of
+   itself fills the frame behind it so the card still reads as one
+   solid block in the grid instead of a letterboxed gap. */
+.team-photo--full { background: #2B354E; }
+.team-photo--full .team-photo-img {
+  position: relative;
+  z-index: 1;
+  object-fit: contain;
+  object-position: center;
+}
+.team-photo-blur {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.25);
+  filter: blur(26px) saturate(0.75) brightness(0.62);
+  z-index: 0;
+  pointer-events: none;
+}
+.team-card:hover .team-photo--full .team-photo-img { transform: none; }
 .team-photo-texture {
   position: absolute;
   inset: 0;
@@ -502,10 +528,17 @@ main {
   font-size: 44px; font-weight: 300; color: #1A1A1A; margin-bottom: 20px;
 }
 .about-team-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* Flex, not grid, so a final row with fewer than 3 people centres itself
+     instead of hugging the left edge. */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start; /* prevents cards from stretching to unequal heights */
   gap: 28px;
-  align-items: start; /* prevents cards from stretching to unequal heights */
+}
+.about-team-grid > .team-card {
+  flex: 0 1 calc((100% - 56px) / 3);
+  max-width: calc((100% - 56px) / 3);
 }
 
 .about-cta-section {
@@ -550,7 +583,11 @@ main {
 
   .about-team-section { padding: 56px 20px; }
   .about-team-h2 { font-size: 28px; }
-  .about-team-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .about-team-grid { gap: 16px; }
+  .about-team-grid > .team-card {
+    flex: 0 1 calc((100% - 16px) / 2);
+    max-width: calc((100% - 16px) / 2);
+  }
 
   /* Revenue estimator: stack controls above result on mobile */
   .estimator-grid { grid-template-columns: 1fr !important; }
@@ -815,14 +852,287 @@ main {
   .blog-article-p { font-size: 15.5px; }
 }
 
-/* ---------------------------------------------------------------
-   TEMPORARY: WordPress media placeholder
-   Until the real photos land in public/img/, these 404. This makes
-   them read as a soft brand-coloured panel instead of a broken-image
-   icon with alt text. Safe to delete once the WP origin is wired up.
-   --------------------------------------------------------------- */
-img[src^="/img/"] {
-  background: linear-gradient(160deg, #3d4864 0%, #2B354E 100%);
-  color: transparent;
-  font-size: 0;
+/* ─── FOUNDER BLOCK (About page) ──────────────────── */
+.founder-section {
+  background: #FAF8F5;
+  padding: 104px 60px;
+  border-top: 1px solid #EEEBE5;
+}
+.founder-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.founder-photo-col { position: sticky; top: 110px; text-align: center; }
+.founder-photo-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: linear-gradient(160deg, #eae6de 0%, #d8d3c9 100%);
+  box-shadow: 0 26px 60px rgba(43, 53, 78, 0.16);
+}
+.founder-photo-img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 18%;
+  display: block;
+  filter: saturate(0.94) contrast(1.03);
+}
+.founder-photo-rule {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(
+    90deg, transparent 0%, var(--gold) 40%, var(--gold-light) 60%, transparent 100%
+  );
+}
+.founder-photo-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: #1A1A1A; margin: 24px 0 6px;
+}
+.founder-photo-role {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold);
+}
+.founder-kicker {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 18px;
+}
+.founder-h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 44px; font-weight: 300;
+  color: #1A1A1A; line-height: 1.15; margin-bottom: 20px;
+}
+.founder-rule { width: 50px; height: 2px; background: var(--gold); margin-bottom: 36px; }
+.founder-p {
+  font-size: 16px; line-height: 1.95; color: #4A4A4A; margin-bottom: 22px;
+}
+.founder-p-lead {
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px; font-weight: 300; font-style: italic;
+  line-height: 1.75; color: #2B354E;
+  border-left: 3px solid var(--gold);
+  padding-left: 26px;
+  margin-bottom: 30px;
+}
+.founder-signoff {
+  font-family: 'Outfit', sans-serif;
+  font-size: 24px; font-weight: 300; font-style: italic;
+  color: #2B354E; margin-top: 34px;
+  padding-top: 22px;
+  border-top: 1px solid #EAE5DC;
+  display: inline-block;
+}
+
+@media (max-width: 900px) {
+  .founder-section { padding: 56px 20px; }
+  .founder-grid { grid-template-columns: 1fr; gap: 36px; }
+  .founder-photo-col { position: static; max-width: 300px; margin: 0 auto; }
+  .founder-h2 { font-size: 28px; }
+  .founder-p { font-size: 15px; }
+  .founder-p-lead { font-size: 17px; padding-left: 18px; }
+  .founder-signoff { font-size: 20px; }
+}
+
+/* ─── LEGAL PAGES (terms, privacy) ────────────────── */
+.legal-banner {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 140% at 50% 0%, #3a4767 0%, #2B354E 45%, #0D1520 100%);
+  padding: 152px 24px 74px;
+  text-align: center;
+}
+.legal-banner-glow {
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg, transparent, transparent 34px,
+    rgba(171, 144, 85, 0.045) 34px, rgba(171, 144, 85, 0.045) 35px
+  );
+  pointer-events: none;
+}
+.legal-banner-inner { position: relative; z-index: 1; }
+.legal-banner-icon {
+  width: 46px; height: auto; margin-bottom: 20px;
+  filter: brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(5deg);
+}
+.legal-banner-h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 48px; font-weight: 300;
+  letter-spacing: 0.06em; color: #fff; margin: 0 0 20px;
+}
+.legal-banner-rule {
+  width: 70px; height: 2px; margin: 0 auto 22px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+}
+.legal-banner-kicker {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.legal-section { background: #fff; padding: 64px 24px 104px; }
+.legal-wrap { max-width: 760px; margin: 0 auto; }
+
+.legal-summary {
+  background: #FAF8F5;
+  border-left: 3px solid var(--gold);
+  padding: 30px 32px 26px;
+  margin-bottom: 44px;
+}
+.legal-summary-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 16px;
+}
+.legal-summary ul { list-style: none; margin: 0; padding: 0; }
+.legal-summary li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 15px; line-height: 1.75; color: #3A3A3A;
+  margin-bottom: 12px;
+}
+.legal-summary li::before {
+  content: '';
+  position: absolute; left: 0; top: 10px;
+  width: 6px; height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+.legal-summary-note {
+  margin-top: 18px; padding-top: 14px;
+  border-top: 1px solid #EAE5DC;
+  font-size: 12.5px; line-height: 1.65; color: #8A8478; font-style: italic;
+}
+
+.legal-updated {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: #9A948A; margin-bottom: 34px;
+}
+
+/* Typography for whatever HTML WordPress hands us. */
+.legal-prose { font-size: 15.5px; line-height: 1.85; color: #4A4A4A; }
+.legal-prose > *:first-child { margin-top: 0; }
+.legal-prose p { margin: 0 0 20px; }
+.legal-prose h1,
+.legal-prose h2,
+.legal-prose h3,
+.legal-prose h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1A1A1A;
+  margin: 44px 0 8px;
+}
+.legal-prose h1 { font-size: 15px; }
+.legal-prose h2 { font-size: 14px; }
+.legal-prose h3,
+.legal-prose h4 { font-size: 12.5px; }
+.legal-prose h1::after,
+.legal-prose h2::after,
+.legal-prose h3::after,
+.legal-prose h4::after {
+  content: '';
+  display: block;
+  width: 30px; height: 2px;
+  background: var(--gold);
+  margin: 12px 0 18px;
+}
+.legal-prose strong, .legal-prose b { color: #1A1A1A; font-weight: 600; }
+.legal-prose em, .legal-prose i { font-style: italic; }
+.legal-prose ul, .legal-prose ol { margin: 0 0 22px; padding-left: 22px; }
+.legal-prose li { margin-bottom: 9px; }
+.legal-prose ul { list-style: none; padding-left: 20px; }
+.legal-prose ul > li { position: relative; padding-left: 16px; }
+.legal-prose ul > li::before {
+  content: '';
+  position: absolute; left: 0; top: 11px;
+  width: 5px; height: 5px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+.legal-prose ol { list-style: decimal; }
+.legal-prose a {
+  color: var(--navy);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold);
+  transition: color 0.2s;
+}
+.legal-prose a:hover { color: var(--gold); }
+.legal-prose hr { border: none; height: 1px; background: #EAE5DC; margin: 40px 0; }
+.legal-prose blockquote {
+  border-left: 3px solid var(--gold);
+  padding-left: 22px;
+  margin: 0 0 24px;
+  color: #2B354E;
+  font-style: italic;
+}
+.legal-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 26px;
+  font-size: 14px;
+}
+.legal-prose th, .legal-prose td {
+  border: 1px solid #EAE5DC;
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+.legal-prose th { background: #FAF8F5; font-weight: 600; color: #1A1A1A; }
+.legal-prose img { max-width: 100%; height: auto; }
+/* WordPress theme cruft that sometimes rides along inside the content. */
+.legal-prose .screen-reader-text,
+.legal-prose .sl-search-form,
+.legal-prose script,
+.legal-prose style { display: none !important; }
+
+.legal-foot { margin-top: 64px; text-align: center; }
+.legal-foot-rule {
+  width: 100%; height: 1px;
+  background: linear-gradient(
+    90deg, transparent 0%, rgba(171, 144, 85, 0.45) 50%, transparent 100%
+  );
+  margin-bottom: 32px;
+}
+.legal-foot-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: #1A1A1A; margin-bottom: 10px;
+}
+.legal-foot-line { font-size: 14px; color: #6A6A6A; margin-bottom: 6px; }
+.legal-foot-line a { color: #6A6A6A; text-decoration: none; }
+.legal-foot-line a:hover { color: var(--gold); }
+.legal-foot-dot { margin: 0 10px; color: var(--gold); }
+.legal-foot-help {
+  margin-top: 26px;
+  font-size: 14px; color: #6A6A6A;
+}
+.legal-foot-help a {
+  color: var(--navy);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold);
+}
+.legal-foot-help a:hover { color: var(--gold); }
+
+@media (max-width: 767px) {
+  .legal-banner { padding: 118px 20px 56px; }
+  .legal-banner-h1 { font-size: 32px; letter-spacing: 0.04em; }
+  .legal-section { padding: 44px 20px 72px; }
+  .legal-summary { padding: 24px 22px 20px; margin-bottom: 34px; }
+  .legal-summary li { font-size: 14.5px; }
+  .legal-prose { font-size: 15px; }
 }

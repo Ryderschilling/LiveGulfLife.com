@@ -3,13 +3,13 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 
-const WP = ''
-const UP = '/img'
+const WP = 'https://livegulflife.com'
+const UP = `${WP}/wp-content/uploads/2025/11`
 
 const IMG = {
-  heroBg:   `${UP}/property-management.jpg`,
-  poolImg:  `${UP}/private-pool.jpg`,
-  ctaImg:   `${UP}/commitment.jpg`,
+  heroBg:   `${UP}/AdobeStock_653632793-scaled.jpeg`,
+  poolImg:  `${UP}/original_169209707_private_pool-e1764190709180.jpeg`,
+  ctaImg:   `${UP}/AdobeStock_214368481.jpeg`,
 }
 
 function useIsMobile(bp = 768) {

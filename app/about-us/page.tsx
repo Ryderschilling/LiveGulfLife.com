@@ -1,12 +1,29 @@
 import Link from 'next/link'
 
-const WP = ''
-const UP  = '/img'
+const WP = 'https://livegulflife.com'
+const UP  = `${WP}/wp-content/uploads/2025/11`
 
 const IMG = {
-  banner:   `${UP}/about-1.jpg`,
-  side:     `${UP}/about-2.jpg`,
+  banner:   `${UP}/image-2.jpg`,
+  side:     `${UP}/image-3.jpg`,
   logoIcon: '/logo-white.svg',
+}
+
+// ─── Founder ────────────────────────────────────────────────────────────────
+// John gets his own block rather than a card. His letter is the strongest copy
+// on the site and a 6-paragraph story does not belong in a 34-character card.
+const FOUNDER = {
+  name: "John O'Hanlan",
+  role: 'Founder & Owner',
+  photo: '/team/john.jpg',
+  paragraphs: [
+    "Some of the best memories of my life were made on family vacations at the beach. Looking back, I don't remember what we spent or where we ate. I remember the conversations, the laughter, and the time with the people I love. Those vacations became part of our family's story.",
+    "I believe that is the true value of a vacation home. It is more than an investment. It is a place where memories are made, traditions begin, and a family's legacy is built one vacation at a time.",
+    'Before founding Gulf Life, my career was in finance, business planning, and consulting. I spent years helping businesses make smart financial decisions, improve performance, and maximize returns. Today I bring that same mindset to every property we manage.',
+    'I love helping owners get the most from their investment, not just by increasing revenue, but by preserving the home, controlling unnecessary expenses, and making thoughtful decisions that create long term value. I see our role as more than property management. We serve as trusted advisors, helping owners navigate every aspect of their vacation home with confidence.',
+    "Having traveled extensively and stayed in vacation rentals across the country, I have also seen what separates a good stay from a truly memorable one. The difference is almost never the size of the house or the number of amenities. It is the care behind the experience.",
+    'That is what drives me every day: helping owners succeed while creating places where families gather, reconnect, and make memories that will be talked about for generations.',
+  ],
 }
 
 type TeamMember = {
@@ -16,28 +33,71 @@ type TeamMember = {
   photo?: string
   /** Short third-person bio. Omit to render name + role only. */
   bio?: string
+  /**
+   * Show the whole photo instead of cropping it to the 3:4 frame.
+   * For shots where cropping would slice another person in half.
+   * The frame fills the gap with a blurred copy of the same photo.
+   */
+  fullPhoto?: boolean
 }
 
-// TODO(John): roles reading "Gulf Life Team" are placeholders until each person
-// sends their title + bio. Swap the role string and add photo/bio as they arrive.
+// NOTE(John): every role below is confirmed except Jim's. His bio describes the
+// job but he never sent a title, so "Director of Communications" is our wording.
+// Say the word and it changes.
 const TEAM: TeamMember[] = [
-  { name: "John O'Hanlan", role: 'Owner' },
+  {
+    name: 'Samantha Reid',
+    role: 'Director of Onboarding',
+    photo: '/team/samantha.jpg',
+    bio:
+      'Samantha leads owner onboarding at Gulf Life, guiding new clients through every ' +
+      'step of turning their property into a successful short term rental. Originally ' +
+      'from England, she made Texas home before settling in Santa Rosa Beach five years ' +
+      'ago. With more than 34 years in real estate and the experience of building a ' +
+      'business from concept to a thriving operation, she also runs the day to day, ' +
+      'making sure the team has the systems and support to deliver the five star ' +
+      'experience that defines Gulf Life.',
+  },
+  {
+    name: 'Mark Whitten',
+    role: 'Operations Director',
+    photo: '/team/mark.jpg',
+    bio:
+      'Before entering the vacation rental industry, Mark served as an overseas ' +
+      'missionary, educator, author, restoration specialist, and construction repair ' +
+      'superintendent, managing large scale residential and commercial repair projects. ' +
+      'That background gave him a rare blend of leadership, communication, and hands on ' +
+      'expertise, along with a sharp eye for property maintenance, quality control, and ' +
+      'homeowner advocacy. Today he pairs it with a passion for hospitality, helping ' +
+      'owners protect their investment while guests enjoy the Emerald Coast.',
+  },
+  {
+    name: 'Jim McGehee',
+    role: 'Director of Communications',
+    photo: '/team/jim.jpg',
+    bio:
+      'Jim handles communication with owners and guests, and keeps the Gulf Life team ' +
+      'connected day to day. Before joining Gulf Life he started, managed, and sold ' +
+      'several companies across technical fields including industrial computer ' +
+      'integration and satellite communications. In every one of those ventures the key ' +
+      'to success was the same thing: communicating well with the customer.',
+  },
   {
     name: 'Jeremy',
     role: 'Property Operations',
     photo: '/team/jeremy.jpg',
+    fullPhoto: true,
     bio:
       'Jeremy helps keep our vacation homes guest-ready by coordinating maintenance, ' +
       'solving property issues, and working with trusted local vendors. He is committed ' +
       'to providing reliable service, clear communication, and ensuring every guest has ' +
       'a comfortable, worry-free stay.',
   },
-  { name: 'Jim McGehee', role: 'Gulf Life Team' },
-  { name: 'Samantha Reid', role: 'Gulf Life Team' },
-  { name: 'Mark', role: 'Gulf Life Team' },
   {
     name: 'Erin Brockman',
     role: 'Property Inspector & Compliance Coordinator',
+    photo: '/team/erin.jpg',
+    fullPhoto: true,
     bio:
       'Erin helps ensure every Gulf Life Concierge vacation home is guest-ready through ' +
       'detailed property inspections, and supports the onboarding of new properties by ' +
@@ -293,6 +353,42 @@ export default function AboutPage() {
         }} />
       </section>
 
+      {/* ── Founder ─────────────────────────────────────── */}
+      <section className="founder-section">
+        <div className="founder-grid">
+
+          <div className="founder-photo-col">
+            <div className="founder-photo-frame">
+              <img
+                src={FOUNDER.photo}
+                alt={`${FOUNDER.name}, ${FOUNDER.role} of Gulf Life Concierge`}
+                className="founder-photo-img"
+              />
+              <div className="founder-photo-rule" />
+            </div>
+            <p className="founder-photo-name">{FOUNDER.name}</p>
+            <p className="founder-photo-role">{FOUNDER.role}</p>
+          </div>
+
+          <div className="founder-copy-col">
+            <p className="founder-kicker">A Note From Our Founder</p>
+            <h2 className="founder-h2">
+              Why We Do<br />
+              <em style={{ fontStyle: 'italic', fontWeight: 400 }}>This Work</em>
+            </h2>
+            <div className="founder-rule" />
+
+            {FOUNDER.paragraphs.map((p, i) => (
+              <p key={i} className={i === 0 ? 'founder-p founder-p-lead' : 'founder-p'}>
+                {p}
+              </p>
+            ))}
+
+            <p className="founder-signoff">{FOUNDER.name}</p>
+          </div>
+        </div>
+      </section>
+
       {/* ── Meet Our Team ──────────────────────────────── */}
       <section className="about-team-section">
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
@@ -311,14 +407,25 @@ export default function AboutPage() {
           <div className="about-team-grid">
             {TEAM.map((member) => (
               <div key={member.name} className="team-card">
-                <div className="team-photo">
+                <div className={member.fullPhoto ? 'team-photo team-photo--full' : 'team-photo'}>
                   {member.photo ? (
-                    <img
-                      src={member.photo}
-                      alt={`${member.name}, ${member.role} at Gulf Life Concierge`}
-                      loading="lazy"
-                      className="team-photo-img"
-                    />
+                    <>
+                      {member.fullPhoto && (
+                        <img
+                          src={member.photo}
+                          alt=""
+                          aria-hidden="true"
+                          loading="lazy"
+                          className="team-photo-blur"
+                        />
+                      )}
+                      <img
+                        src={member.photo}
+                        alt={`${member.name}, ${member.role} at Gulf Life Concierge`}
+                        loading="lazy"
+                        className="team-photo-img"
+                      />
+                    </>
                   ) : (
                     <>
                       <div className="team-photo-texture" />

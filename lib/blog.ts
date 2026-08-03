@@ -3,8 +3,8 @@
 // existing entry, change the slug/title/blocks, and redeploy.
 // Inline links inside text use [label](href) syntax.
 
-const WP = ''
-const UP = '/img'
+const WP = 'https://livegulflife.com'
+const UP = `${WP}/wp-content/uploads/2025/11`
 
 export const SITE_URL = 'https://livegulflife.com'
 
@@ -44,7 +44,7 @@ export const POSTS: BlogPost[] = [
     excerpt:
       'Emerald water, sugar-white sand, and 16 beach towns, but when should you actually come? A local, month-by-month look at weather, crowds, and rental rates on 30A.',
     category: 'Travel Guide',
-    image: `${UP}/all-rentals.jpg`,
+    image: `${UP}/GLV_header_beachfront.jpeg`,
     imageAlt: 'Beachfront view of the Gulf of Mexico along Scenic Highway 30A',
     date: '2026-06-05',
     dateDisplay: 'June 5, 2026',
@@ -96,7 +96,7 @@ export const POSTS: BlogPost[] = [
     excerpt:
       'The beach is why you came, but it’s not why you’ll come back. Rare coastal dune lakes, 19 miles of bike path, state parks, and food worth planning a day around.',
     category: 'Travel Guide',
-    image: `${UP}/beachfront.jpg`,
+    image: `${UP}/original_169210140_beach_front-e1764087084845.jpeg`,
     imageAlt: 'White sand beach and emerald Gulf water on 30A',
     date: '2026-06-16',
     dateDisplay: 'June 16, 2026',
@@ -156,7 +156,7 @@ export const POSTS: BlogPost[] = [
     excerpt:
       'Sixteen beach towns share one road, and they could not be more different. A straight-shooting local comparison of 30A’s neighborhoods, and who each one is really for.',
     category: 'Travel Guide',
-    image: `${UP}/resort.jpg`,
+    image: `${UP}/original_169986477_resorts.jpeg`,
     imageAlt: 'Resort community along Scenic Highway 30A',
     date: '2026-06-27',
     dateDisplay: 'June 27, 2026',
@@ -223,7 +223,7 @@ export const POSTS: BlogPost[] = [
     excerpt:
       'Two listings can look identical online and deliver totally different weeks. Nine questions that separate a flawless 30A stay from an expensive disappointment.',
     category: 'Vacation Tips',
-    image: `${UP}/private-pool.jpg`,
+    image: `${UP}/original_169209707_private_pool-e1764190709180.jpeg`,
     imageAlt: 'Private pool at a 30A vacation rental home',
     date: '2026-07-08',
     dateDisplay: 'July 8, 2026',
@@ -266,7 +266,7 @@ export const POSTS: BlogPost[] = [
     excerpt:
       'Self-managing a 30A rental from out of state is a part-time job with 2am shifts. Here’s what professional management actually covers, and the honest math on the fee.',
     category: 'For Owners',
-    image: `${UP}/property-management.jpg`,
+    image: `${UP}/AdobeStock_653632793-scaled.jpeg`,
     imageAlt: 'Luxury vacation rental home managed on 30A',
     date: '2026-07-15',
     dateDisplay: 'July 15, 2026',

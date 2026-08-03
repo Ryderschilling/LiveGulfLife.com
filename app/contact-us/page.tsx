@@ -2,12 +2,12 @@
 
 import { useState, useEffect, useRef } from 'react'
 
-const WP = ''
-const UP = '/img'
+const WP = 'https://livegulflife.com'
+const UP = `${WP}/wp-content/uploads/2025/11`
 
 const IMG = {
-  hero:  `${UP}/concierge-cta.jpg`,
-  beach: `${UP}/beachfront.jpg`,
+  hero:  `${UP}/AdobeStock_371083969-scaled.jpeg`,
+  beach: `${UP}/original_169210140_beach_front-e1764087084845.jpeg`,
 }
 
 function useIsMobile(bp = 768) {
